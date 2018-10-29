@@ -17,24 +17,25 @@ test('Models.getRestaurants should exist', () => {
 });
 
 test('Models.getRestaurants should return truthy values', () => {
-  Models.getRestaurants((results) => {
-    expect(results).toBeTruthy();
-    expect(results[0]).toBeTruthy();
+  Models.resetDatabase(() => {
+    Models.getRestaurants((results) => {
+      expect(results).toBeTruthy();
+      expect(results[0]).toBeTruthy();
+    });
   });
 });
 
 test('Models.getRestaurants should return an array of objects', () => {
-  Models.getRestaurants((err, results) => {
-    expect(Array.isArray(results)).toBeTruthy();
-  });
-
-  Models.getRestaurants((err, results) => {
-    expect(Array.isArray(results[0])).toBe(false);
-    expect(typeof results[0]).toBe('object');
-    expect(typeof results[0] === 'string').toBe(false);
-    expect(typeof results[0] === 'number').toBe(false);
-    expect(typeof results[0] === 'function').toBe(false);
-    expect(typeof results[0] === 'symbol').toBe(false);
+  Models.resetDatabase(() => {
+    Models.getRestaurants((err, results) => {
+      expect(Array.isArray(results)).toBeTruthy();
+      expect(Array.isArray(results[0])).toBe(false);
+      expect(typeof results[0]).toBe('object');
+      expect(typeof results[0] === 'string').toBe(false);
+      expect(typeof results[0] === 'number').toBe(false);
+      expect(typeof results[0] === 'function').toBe(false);
+      expect(typeof results[0] === 'symbol').toBe(false);
+    });
   });
 });
 
@@ -87,28 +88,33 @@ const newRestaurantObject1 = {
 };
 
 test('Models.insertRestaurant should increase the number of restaurants in the database', () => {
-  Models.getAllRestaurants((err, results) => {
-    const restaurantsBeforeInsert = results;
-    Models.insertRestaurant(newRestaurantObject0, () => {
-      Models.getAllRestaurants((newResults) => {
-        const restaurantsAfterInsert = newResults;
-        expect(restaurantsBeforeInsert.length).toBeLessThan(restaurantsAfterInsert.length);
+  Models.resetDatabase(() => {
+    Models.getAllRestaurants((err, results) => {
+      const restaurantsBeforeInsert = results;
+      Models.insertRestaurant(newRestaurantObject0, () => {
+        Models.getAllRestaurants((newResults) => {
+          const restaurantsAfterInsert = newResults;
+          expect(restaurantsBeforeInsert.length).toBeLessThan(restaurantsAfterInsert.length);
+        });
       });
     });
   });
 });
 
 test('Models.getRestaurant should return a restaurant given an ID', () => {
-  Models.insertRestaurant(newRestaurantObject1);
-  Models.getRestaurant(1, (err, getOneResult) => {
-    Models.getRestaurants((error, getAllResult) => expect(getOneResult).toEqual(getAllResult));
+  Models.resetDatabase(() => {
+    Models.insertRestaurant(newRestaurantObject1, () => {
+      Models.getRestaurant(1, (err, getOneResult) => {
+        Models.getRestaurants((error, getAllResult) => expect(getOneResult).toEqual(getAllResult));
+      });
+    });
   });
 });
 
 test('Models.resetDatabase should delete all new records in the database, leaving only the dummy data', () => {
   Models.resetDatabase(() => {
     Models.getAllRestaurants((results) => {
-      expect(results).toEqual(dummyData.data);
+      expect(results).toEqual(dummyData);
     });
   });
 });
