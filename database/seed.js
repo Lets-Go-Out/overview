@@ -1,21 +1,13 @@
 const faker = require('faker');
 const fs = require('fs');
+const sharedDummyData = require('./sharedDummyData.js');
 
 faker.seed(105);
+const fakeRestaurants = sharedDummyData;
+let fakeRestaurant;
 
-const fakeRestaurants = [];
-
-for (let i = 1; i <= 100; i += 1) {
-  const fakeRestaurant = { id: i };
-  let fakeWords = [];
-  const length = faker.random.number() % 3;
-
-  for (let j = 0; j <= length; j += 1) {
-    fakeWords.push(faker.random.word());
-  }
-
-  fakeRestaurant.name = fakeWords.join(' ');
-
+for (let i = 1; i < fakeRestaurants.length; i += 1) {
+  fakeRestaurant = fakeRestaurants[i];
   fakeRestaurant.address_line_1 = faker.address.streetAddress();
 
   if (i % 3 === 0) {
@@ -30,12 +22,12 @@ for (let i = 1; i <= 100; i += 1) {
   fakeRestaurant.longitude = faker.address.longitude();
   fakeRestaurant.latitude = faker.address.latitude();
 
-  fakeWords = [];
+  const fakeWords = [];
 
-  for (let j = 0; j <= length; j += 1) {
+  const neighborhoodLength = faker.random.number(3);
+  for (let j = 0; j <= neighborhoodLength; j += 1) {
     fakeWords.push(faker.random.word());
   }
-
   fakeRestaurant.neighborhood = fakeWords.join(' ');
 
   fakeRestaurant.website = faker.internet.url();
@@ -43,6 +35,8 @@ for (let i = 1; i <= 100; i += 1) {
   fakeRestaurant.hours = faker.address.secondaryAddress();
   fakeRestaurant.phone_number = faker.phone.phoneNumber();
 
+  // Quintile price range represented in $s.
+  // (e.g. $ === 1st quintile, $$$$ === fourth quintile)
   let priceRange = '';
   const numberOf$s = faker.random.number(5);
   for (let j = 0; j < numberOf$s; j += 1) {
@@ -50,6 +44,8 @@ for (let i = 1; i <= 100; i += 1) {
   }
   fakeRestaurant.price_range = priceRange;
 
+  // REVIEW DATA -----------------------------------------
+  // consider adding to shared dummy data.
   let total;
   const numberOfReviews = faker.random.number(2000);
 
@@ -59,14 +55,14 @@ for (let i = 1; i <= 100; i += 1) {
 
   fakeRestaurant.review_average = total / numberOfReviews;
   fakeRestaurant.review_count = numberOfReviews;
+  // --------------------------------------------------------
+
   fakeRestaurant.tags = [];
 
   const numberOfTags = faker.random.number(50);
   for (let j = 0; j < numberOfTags; j += 1) {
     fakeRestaurant.tags.push(faker.hacker.noun());
   }
-
-  fakeRestaurants.push(fakeRestaurant);
 }
 
 const restaurantsJSON = JSON.stringify(fakeRestaurants);

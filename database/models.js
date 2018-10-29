@@ -48,5 +48,3 @@ module.exports.resetDatabase = (callback) => {
       }
     });
 };
-
-console.log('This edit was made to submit a pull request');
