@@ -1,12 +1,12 @@
 const mysql = require('mysql');
-const dummyDataJson = require('./dummyData.json');
+const dummyData = require('./dummyData.json');
 
-const dummyData = JSON.parse(dummyDataJson);
-
-module.exports.connection = mysql.createConnection({
+const dbConnection = mysql.createConnection({
   user: 'root',
   password: 'Why you lookin\' at my password tho?',
 });
+
+module.exports.connection = dbConnection;
 
 module.exports.getAllRestaurants = (callback) => {
   module.exports.connection.query('SELECT * FROM restaurants',

@@ -11,23 +11,33 @@ test('adds 1 + 2 to equal 3', () => {
 // TESTING schema.sql AND models.js
 
 const Models = require('../database/models.js');
+const dummyData = require('../database/dummyData.json');
 
-test('Models.getRestaurants should exist', () => {
-  expect(Models.getRestaurants).toBeDefined();
+test('Models.getAllRestaurants should exist', () => {
+  expect(Models.getAllRestaurants).toBeDefined();
 });
 
-test('Models.getRestaurants should return truthy values', () => {
+test('Models.resetDatabase should delete all new records in the database, leaving only the dummy data', () => {
   Models.resetDatabase(() => {
-    Models.getRestaurants((results) => {
+    Models.getAllRestaurants((results) => {
+      expect(results).toEqual(dummyData);
+    });
+  });
+});
+
+
+test('Models.getAllRestaurants should return truthy values', () => {
+  Models.resetDatabase(() => {
+    Models.getAllRestaurants((results) => {
       expect(results).toBeTruthy();
       expect(results[0]).toBeTruthy();
     });
   });
 });
 
-test('Models.getRestaurants should return an array of objects', () => {
+test('Models.getAllRestaurants should return an array of objects', () => {
   Models.resetDatabase(() => {
-    Models.getRestaurants((err, results) => {
+    Models.getAllRestaurants((err, results) => {
       expect(Array.isArray(results)).toBeTruthy();
       expect(Array.isArray(results[0])).toBe(false);
       expect(typeof results[0]).toBe('object');
@@ -43,7 +53,6 @@ test('Models.insertRestaurant should exist', () => {
   expect(Models.insertRestaurant).toBeDefined();
 });
 
-const dummyData = require('../database/seed.js');
 
 const newRestaurantObject0 = {
   id: '0',
@@ -65,7 +74,6 @@ const newRestaurantObject0 = {
   review_count: '0',
   tags: '0',
 };
-
 const newRestaurantObject1 = {
   id: '1',
   name: '1',
@@ -105,16 +113,10 @@ test('Models.getRestaurant should return a restaurant given an ID', () => {
   Models.resetDatabase(() => {
     Models.insertRestaurant(newRestaurantObject1, () => {
       Models.getRestaurant(1, (err, getOneResult) => {
-        Models.getRestaurants((error, getAllResult) => expect(getOneResult).toEqual(getAllResult));
+        Models.getAllRestaurants((error, getAllResult) => {
+          expect(getOneResult).toEqual(getAllResult);
+        });
       });
-    });
-  });
-});
-
-test('Models.resetDatabase should delete all new records in the database, leaving only the dummy data', () => {
-  Models.resetDatabase(() => {
-    Models.getAllRestaurants((results) => {
-      expect(results).toEqual(dummyData);
     });
   });
 });
