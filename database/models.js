@@ -3,7 +3,7 @@ const dummyData = require('./dummyData.json');
 
 const dbConnection = mysql.createConnection({
   user: 'root',
-  password: 'Why you lookin\' at my password tho?',
+  password: 'ph@sePr1imeM3tric$$$',
 });
 
 module.exports.connection = dbConnection;
@@ -17,6 +17,20 @@ module.exports.getAllRestaurants = (callback) => {
         callback(null, results, fields);
       }
     });
+};
+
+module.exports.getRestaurantById = (id, callback) => {
+  // query database for restaurant with a given ID,
+  dbConnection.query('SELECT * FROM restaurants WHERE id=?', [id], (err, results, fields) => {
+    //    invoke error-first callback stuff
+    if (err) {
+      console.error(err);
+      callback(err, null, null);
+    } else {
+      console.log('getAllRestaurantsById succeeded! results: ', results);
+      callback(null, results, fields);
+    }
+  });
 };
 
 module.exports.insertRestaurant = (newRestaurant, callback) => {
@@ -91,16 +105,17 @@ module.exports.resetDatabase = (callback) => {
   // This is set to my own file path... this should probably be refactored to use
   // the path node module.
   module.exports.connection.query('\\. C:\\Users\\Owner\\hrsf105-overview-module\\database\\schema.sql',
-    (err) => {
+    (err, results, fields) => {
       if (err) {
         callback(err, null, null);
       } else {
-        module.exports.insertManyRestaurants(dummyData, (error, results) => {
-          if (error) {
-            console.error(error, null, null);
-            callback(error, null, null);
+        console.log(results, fields);
+        module.exports.insertManyRestaurants(dummyData, (insertError, insertResults) => {
+          if (insertError) {
+            console.insertError(insertError, null, null);
+            callback(insertError, null, null);
           } else {
-            callback(null, results);
+            callback(null, insertResults);
           }
         });
       }

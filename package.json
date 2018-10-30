@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "jest",
+    "async-test": "jest --detectOpenHandles",
     "seed": "node ./database/seed.js",
     "start": "nodemon server/index.js"
   },
