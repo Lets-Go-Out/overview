@@ -1,0 +1,15 @@
+{
+  "extends": "airbnb",
+  "env" : {
+    "jest": true
+  },
+  "plugins": ["eslint-plugin-react", "eslint-plugin-jsx-a11y", "eslint-plugin-import"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        }
+    }
+}

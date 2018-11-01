@@ -3,13 +3,14 @@ const dummyData = require('./dummyData.json');
 
 const dbConnection = mysql.createConnection({
   user: 'root',
-  password: 'ph@sePr1imeM3tric$$$',
+  password: 'ph@sePr1meM3tric$$$',
+  database: 'drop_table',
 });
 
 module.exports.connection = dbConnection;
 
 module.exports.getAllRestaurants = (callback) => {
-  module.exports.connection.query('SELECT * FROM restaurants',
+  dbConnection.query('SELECT * FROM restaurants',
     (err, results, fields) => {
       if (err) {
         callback(err, null, null);
@@ -24,10 +25,10 @@ module.exports.getRestaurantById = (id, callback) => {
   dbConnection.query('SELECT * FROM restaurants WHERE id=?', [id], (err, results, fields) => {
     //    invoke error-first callback stuff
     if (err) {
-      console.error(err);
+      // console.error(err);
       callback(err, null, null);
     } else {
-      console.log('getAllRestaurantsById succeeded! results: ', results);
+      console.log('getRestaurantById succeeded! results: ', results);
       callback(null, results, fields);
     }
   });
@@ -36,7 +37,7 @@ module.exports.getRestaurantById = (id, callback) => {
 module.exports.insertRestaurant = (newRestaurant, callback) => {
   // try to increase the size of the query string by concatonating comma-separated (?,?,?) s.
   const queryArgs = Object.values(newRestaurant).slice(1);
-  module.exports.connection.query('INSERT INTO restaurants VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', queryArgs, (err, results, fields) => {
+  dbConnection.query(`INSERT INTO restaurants VALUES (null${',?'.repeat(29)})`, queryArgs, (err, results, fields) => {
     if (err) {
       callback(err, null, null);
     } else {
@@ -46,51 +47,23 @@ module.exports.insertRestaurant = (newRestaurant, callback) => {
 };
 
 module.exports.insertManyRestaurants = (restaurantsArray, callback) => {
-  let query = `INSERT INTO restaurants VALUES (
-    ${restaurantsArray[0].id},
-    ${restaurantsArray[0].name},
-    ${restaurantsArray[0].address_line_1},
-    ${restaurantsArray[0].address_line_2},
-    ${restaurantsArray[0].city},
-    ${restaurantsArray[0].state},
-    ${restaurantsArray[0].zip},
-    ${restaurantsArray[0].longitude},
-    ${restaurantsArray[0].latitude},
-    ${restaurantsArray[0].neighborhood},
-    ${restaurantsArray[0].website},
-    ${restaurantsArray[0].description},
-    ${restaurantsArray[0].hours},
-    ${restaurantsArray[0].phone_number},
-    ${restaurantsArray[0].price_range},
-    ${restaurantsArray[0].review_average},
-    ${restaurantsArray[0].review_count},
-    ${restaurantsArray[0].tags}
-  )`;
+  let query = `INSERT INTO restaurants (${Object.keys(restaurantsArray[0])}) VALUES `;
+
+  query += '(NULL';
+  for (let i = 1; i < Object.keys(restaurantsArray[0]).length; i += 1) {
+    query += `,"${restaurantsArray[0][Object.keys(restaurantsArray[0])[i]]}"`;
+  }
+  query += ')';
 
   for (let i = 1; i < restaurantsArray.length; i += 1) {
-    query += `, (
-      ${restaurantsArray[i].id},
-      ${restaurantsArray[i].name},
-      ${restaurantsArray[i].address_line_1},
-      ${restaurantsArray[i].address_line_2},
-      ${restaurantsArray[i].city},
-      ${restaurantsArray[i].state},
-      ${restaurantsArray[i].zip},
-      ${restaurantsArray[i].longitude},
-      ${restaurantsArray[i].latitude},
-      ${restaurantsArray[i].neighborhood},
-      ${restaurantsArray[i].website},
-      ${restaurantsArray[i].description},
-      ${restaurantsArray[i].hours},
-      ${restaurantsArray[i].phone_number},
-      ${restaurantsArray[i].price_range},
-      ${restaurantsArray[i].review_average},
-      ${restaurantsArray[i].review_count},
-      ${restaurantsArray[i].tags}
-    )`;
+    query += ', (NULL';
+    for (let j = 1; j < Object.keys(restaurantsArray[i]).length; j += 1) {
+      query += `, "${restaurantsArray[i][Object.keys(restaurantsArray[i])[j]]}"`;
+    }
+    query += ')';
   }
 
-  module.exports.connection.query(query, (error, results) => {
+  dbConnection.query(query, (error, results) => {
     if (error) {
       console.error(error);
       callback(error, null);
@@ -101,23 +74,35 @@ module.exports.insertManyRestaurants = (restaurantsArray, callback) => {
   });
 };
 
-module.exports.resetDatabase = (callback) => {
-  // This is set to my own file path... this should probably be refactored to use
-  // the path node module.
-  module.exports.connection.query('\\. C:\\Users\\Owner\\hrsf105-overview-module\\database\\schema.sql',
+module.exports.deleteDatabase = (callback) => {
+  const query = 'SOURCE C:\\Users\\Owner\\hrsf105-overview-module\\database\\schema.sql';
+  dbConnection.query(query,
     (err, results, fields) => {
+      console.log('Are we in the callback function of resetDatabase?');
       if (err) {
         callback(err, null, null);
       } else {
-        console.log(results, fields);
-        module.exports.insertManyRestaurants(dummyData, (insertError, insertResults) => {
-          if (insertError) {
-            console.insertError(insertError, null, null);
-            callback(insertError, null, null);
-          } else {
-            callback(null, insertResults);
-          }
-        });
+        console.log('DELETE RESULTS: >>>>>>>>>>', results);
+        callback(null, results, fields);
       }
     });
+};
+
+module.exports.resetDatabase = (callback) => {
+  // This is set to my own file path... this should probably be refactored to use
+  // the path node module.
+  // console.log('Are we in resetDatabase?');
+  module.exports.deleteDatabase(
+    () => {
+      module.exports.insertManyRestaurants(dummyData, (insertError, insertResults) => {
+        console.log('Are we in the insert?');
+        if (insertError) {
+          console.log(insertError, null, null);
+          callback(insertError, null, null);
+        } else {
+          callback(null, insertResults);
+        }
+      });
+    },
+  );
 };

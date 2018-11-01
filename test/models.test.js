@@ -1,13 +1,3 @@
-
-// TESTING THAT JEST WORKS:
-
-const sum = (a, b) => a + b;
-
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
-});
-
-
 // TESTING schema.sql AND models.js
 
 const Models = require('../database/models.js');
@@ -18,9 +8,13 @@ test('Models.getAllRestaurants should exist', () => {
 });
 
 test('Models.resetDatabase should delete all new records in the database, leaving only the dummy data', () => {
+  console.log('hello world?')
   Models.resetDatabase(() => {
+    console.log('somewhere in the middle')
     Models.getAllRestaurants((results) => {
+      console.log('am i getting here', expect);
       expect(results).toEqual(dummyData);
+      expect(2).toEqual(23);
     });
   });
 });
