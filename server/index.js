@@ -29,7 +29,7 @@ app.get('/api/restaurants/overview/:id', (req, res) => {
       console.error('Server says: something went wrong with the get', err);
       res.send('Check the server console!');
     } else {
-      console.log('Server results: ', results);
+      console.log('Server success!: ');
       res.json(results[0]);
     }
   });

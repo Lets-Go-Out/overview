@@ -1,0 +1,61 @@
+h1, p, div {
+  color: #222;
+}
+
+
+h2, h3, h4 {
+  color: #600;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+.ALTags {
+  margin-top: 15px;
+}
+
+.Address_description, .Neighborhood_description, .Website_description, .private_dining_text, .description_read_more {
+  color: #b00;
+}
+.Address_description:hover, .Neighborhood_description:hover, .Website_description:hover, .private_dining_text:hover, .description_read_more:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.additional_tag {
+  color: #888;
+}
+
+.additional_tag:hover {
+  color: #222;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.description_paragraph, .description_read_more, .top_tag {
+  font-size: 16px;
+}
+
+.review_average_stars,  .review_average_number, .review_count, .price_range, .cuisine_type {
+  font-size: 26px;
+}
+
+.top_tag, .additional_tag, .Cross_Street_description {
+  text-transform: capitalize;
+}
+
+.description_paragraph {
+  margin-top: 8px;
+  margin-bottom: 1px;
+}
+
+.description_read_more {
+  margin-bottom: 17px;
+}
+
+.details_well {
+  background-color: #fffefc;
+  border-color: #d58512;
+}

@@ -1,10 +1,11 @@
 import React from 'react';
-import Glyphicon from '../Glyphicon.jsx';
-import PrivateDining from '../PrivateDining.jsx';
+import Glyphicon from './Glyphicon.jsx';
+import PrivateDining from './PrivateDining.jsx';
+import LocTags from './LocTags.jsx';
+import NonALTags from './NonALTags.jsx';
 
 const Details = (props) => {
   const nonALTagsJsx = [];
-  const locTagsJsx = [];
   const tagsJsx = [];
 
   const nonAdditionalNonLocationalTags = [
@@ -16,75 +17,58 @@ const Details = (props) => {
     ['Payment Methods', props.restaurant.payment_options],
     ['Dress Code', props.restaurant.dress_code],
     ['Executive Chef', props.restaurant.executive_chef],
-    ['Private Dining', props.restaurant.private_dining === '0' ? 'NULL' : (<span className="private_dining_text">See Private Dining Options</span>)],
     ['Private Party Contact', props.restaurant.private_party_contact],
     ['Private Party Facilities', props.restaurant.private_party_fac],
     ['Special Events and Promotions', props.restaurant.promos],
   ];
 
-  const fullAddress = [
-    [props.restaurant.address_line_1],
-    [props.restaurant.address_line_2],
-    [props.restaurant.city],
-    [props.restaurant.state],
-    [props.restaurant.zip],
-  ];
-
-  const locationalTags = [
-    ['Address', fullAddress],
-    ['Cross Street', props.restaurant.cross_street],
-    ['Parking Details', props.restaurant.parking_details],
-    ['Neighborhood', (<span className="neighborhood_link" onClick={() => alert('Feature Not Available')}>{props.restaurant.neighborhood}</span>)],
-  ];
 
 
-  for (let i = 0; i < props.tags.length; i += 1) {
-    tagsJsx.push((<span key={i} className={`additional_tag ${props.tags[i]}`}>{`${props.tags[i]}, `}</span>));
+  for (let i = 0; i < props.restaurant.tags.length; i += 1) {
+    tagsJsx.push((<span key={i} className={`additional_tag ${props.restaurant.tags[i]}`}>{`${props.restaurant.tags[i]}, `}</span>));
   }
 
-  for (let i = 0; i < nonAdditionalNonLocationalTags.length; i += 1) {
-    if (nonAdditionalNonLocationalTags[i][1] !== 'NULL') {
-      nonALTagsJsx.push((
-        <div>
-          <Glyphicon tagName={nonAdditionalNonLocationalTags[i][0]} />
-          <div className={`tag_name ${nonAdditionalNonLocationalTags[i][0].split(' ').join('_')}_name`}>{nonAdditionalNonLocationalTags[i][0]}</div>
-          <div className={`tag_description ${nonAdditionalNonLocationalTags[i][0].split(' ').join('_')}_description`}>{nonAdditionalNonLocationalTags[i][1]}</div>
-        </div>
-      ));
-    }
-  }
-
-  for (let i = 0; i < locationalTags.length; i += 1) {
-    if (locationalTags[i][1] !== 'NULL') {
-      locTagsJsx.push((
-        <div>
-          <Glyphicon tagName={locationalTags[i][0]} />
-          <div className={`tag_name ${locationalTags[i][0].split(' ').join('_')}_name`}>{locationalTags[i][0]}</div>
-          <div className={`tag_description ${locationalTags[i][0].split(' ').join('_')}_description`}>{locationalTags[i][1]}</div>
-        </div>
-      ));
-    }
-  }
-
-  const detailsStyle = {
-    overflow: props.showFullDetails ? 'auto' : 'hidden',
+  const detailsWellStyle = {
+    overflow: props.showFullDetailsState ? 'visible' : 'hidden',
     boxShadow: 'inset 0 15px 0 0 10px 0 solid white',
-    height: props.showFullDetails ? 'auto' : '200px',
+    height: props.showFullDetailsState ? 'auto' : '300px',
+    marginLeft: '0',
+    marginRight: '0',
   };
 
   return (
-    <div style={detailsStyle} className="details">
-      <div className="nonALTagsDiv">
-          {nonALTagsJsx}
-      </div>
-      <div className="ALTags">
-        <div className="Map">MAP GOES HERE</div>
-        {locTagsJsx}
-        <Glyphicon tagName="Additional Tags" />
-        <div className="tag_name">Additional Tags</div>
-        {tagsJsx}
+    <div className="row col-md-10 col-md-offset-1">
+    <div style={detailsWellStyle} className="well well-lg details_well">
+      <div className="details row">
+        <NonALTags restaurant={props.restaurant} />
+        <div className="ALTags col-md-6">
+          <div className="row">
+            <div className="thumbnail">
+              <img src="../../images/stock_map.png" alt="Stock Map" />
+              <div className="caption">
+                <h4>MAP GOES HERE</h4>
+                <p>This feature is not yet included</p>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <LocTags restaurant={props.restaurant} />
+            <div className="media">
+              <div className="media-left">
+                <Glyphicon tagName="Additional Tags" />
+              </div>
+              <div className="media-body">
+                <h4 className="tag_name media-heading">Additional Tags</h4>
+                <p>
+                  {tagsJsx}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <PrivateDining privateDiningText={props.restaurant.private_dining} />
+    </div>
     </div>
   );
 };

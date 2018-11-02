@@ -2,39 +2,33 @@ import React from 'react';
 
 const Description = (props) => {
   const truncatedDescription = props.description.slice(0, 180);
-  const locationalTags = [
-    ['Address', fullAddress],
-    ['Cross Street', this.state.currentRestaurant.cross_street],
-    ['Parking Details', this.state.currentRestaurant.parking_details],
-    ['Neighborhood', (<span className="neighborhood_link" onClick={() => alert('Feature Not Available')}>{this.state.currentRestaurant.neighborhood}</span>)],
-  ];
 
   return (
-    <div className="description">
-      <p className="description_paragraph">
+    <div className="description row">
+      <p className="description_paragraph col-sm-10 col-sm-offset-1 row">
         {
           props.showFullDescriptionState
-            ? props.description
-            : `${truncatedDescription}`
+            ? `${props.description} `
+            : `${truncatedDescription}... `
         }
-        <span
-          display={
-            props.showFullDescriptionState
-              ? 'none'
-              : 'flex'
-          }
-          className="description_read_more"
-          onClick={props.showFullDescription}
-        >
-          {
-            ` + ${
-              props.showFullDescriptionState
-                ? 'Show Less'
-                : 'Read More'
-            }`
-          }
-        </span>
       </p>
+      <div
+        className="description_read_more col-sm-2 col-sm-offset-2"
+        onClick={props.showFullDescription}
+        display={
+          props.showFullDescriptionState
+            ? 'none'
+            : 'flex'
+        }
+      >
+        {
+          `+ ${
+            props.showFullDescriptionState
+              ? 'Read Less'
+              : 'Read More'
+          }`
+        }
+      </div>
   </div>
   );
 };

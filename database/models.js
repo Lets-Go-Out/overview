@@ -3,7 +3,7 @@ const dummyData = require('./dummyData.json');
 
 const dbConnection = mysql.createConnection({
   user: 'root',
-  password: 'ph@sePr1meM3tric$$$',
+  password: 'no look here please',
   database: 'drop_table',
 });
 
@@ -28,7 +28,7 @@ module.exports.getRestaurantById = (id, callback) => {
       // console.error(err);
       callback(err, null, null);
     } else {
-      console.log('getRestaurantById succeeded! results: ', results);
+      console.log('getRestaurantById succeeded!');
       callback(null, results, fields);
     }
   });
