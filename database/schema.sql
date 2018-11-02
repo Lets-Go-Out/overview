@@ -21,6 +21,7 @@ CREATE TABLE restaurants (
   price_range VARCHAR(5000),
   review_average INT,
   review_count INT,
+  dining_style VARCHAR(100) NOT NULL,
   cuisine_types VARCHAR(500),
   private_dining VARCHAR(5000),
   executive_chef VARCHAR(100),

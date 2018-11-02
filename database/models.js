@@ -37,7 +37,7 @@ module.exports.getRestaurantById = (id, callback) => {
 module.exports.insertRestaurant = (newRestaurant, callback) => {
   // try to increase the size of the query string by concatonating comma-separated (?,?,?) s.
   const queryArgs = Object.values(newRestaurant).slice(1);
-  dbConnection.query(`INSERT INTO restaurants VALUES (null${',?'.repeat(29)})`, queryArgs, (err, results, fields) => {
+  dbConnection.query(`INSERT INTO restaurants VALUES (null${',?'.repeat(Object.keys(newRestaurant).length)})`, queryArgs, (err, results, fields) => {
     if (err) {
       callback(err, null, null);
     } else {

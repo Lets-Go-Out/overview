@@ -13,29 +13,41 @@
 *       [X] ratings count
 *       [X] price range
 *       [X] cuisine type
-*       [ ] top tags
+*       [X] top tags
 
-*     [ ] Description:
-*       [ ] text
-*       [ ] Read More button
+*     [X] Description:
+*       [X] text
+*       [X] Read More button
+*         [X] Read More / Show Less
 
-*     [ ] Details list:
-*       [ ] Content
-*         [ ] Dining Style
-*         [ ] Cuisines
-*         [ ] Hours of operation
-*         [ ] Phone number
-*         [ ] Maps API widget
-*         [ ] Website
-*         [ ] Address (plus city, state, and zip)
-*         [ ] Neighborhood
+*     [X] Details list:
+*       [X] Content
+*         [X] Dining Style
+*         [X] Catering
+*         [X] Dress Code
+*         [X] Executive Chef
+*         [X] Private Dining
+*         [X] Private Party Facilities
+*         [X] Special Events and Promotions
+*         [X] Additional Tags
+*         [X] Cuisines
+*         [X] Hours of operation
+*         [X] Phone number
+*         [X] Maps API widget
+*         [X] Website
+*         [X] Address (plus city, state, and zip)
+*         [X] Neighborhood
 
-*       [ ] View All details button
+*       [X] View All details button
 
-*   [ ] Task 2: Build out sections:
+*   [ ] Task 2: split into separate components:
 
-*     [ ] Title:
+*     [ ] Root:
 *       [ ] h1 tag with text
+*       [ ] Summary
+*       [ ] Description
+*       [ ] Details:
+
 
 *     [ ] Summary:
 *       [ ] ratings average
@@ -48,17 +60,34 @@
 *       [ ] text
 *       [ ] Read More button
 
-*     [ ] Details list:
-*       [ ] Content
-*         [ ] Dining Style
-*         [ ] Cuisines
-*         [ ] Hours of operation
-*         [ ] Phone number
-*         [ ] Maps API widget
-*         [ ] Website
-*         [ ] Address (plus city, state, and zip)
-*         [ ] Neighborhood
+*     [ ] Details:
+*       [ ] Details list:
+*         [ ] NonAdditionalNonLocationalTags
+*           [ ] Dining Style
+*           [ ] Cuisines
+*           [ ] Catering
+*           [ ] Dress Code
+*           [ ] Executive Chef
+*           [ ] Private Dining
+*           [ ] Private Party Facilities
+*           [ ]
 
+
+
+*           [ ] Hours of operation
+*           [ ] Phone number
+*           [ ] Maps API widget
+*           [ ] Website
+*           [ ] Address (plus city, state, and zip)
+*           [ ] Neighborhood
 *       [ ] View All details button
 
 * [ ] Tests
+
+* [X] Dining Style
+*   [X] schema
+*   [X] seed
+*   [X] run seed
+*   [X] index.jsx
+*   [X] glyphicon.jsx
+

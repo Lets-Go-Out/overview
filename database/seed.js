@@ -80,6 +80,8 @@ for (let i = 0; i < fakeRestaurants.length; i += 1) {
     fakeRestaurant.tags.push(faker.company.catchPhraseDescriptor());
   }
 
+  fakeRestaurant.dining_style = faker.company.catchPhraseAdjective();
+
   const fakeCuisines = [];
   const numberOfCuisines = faker.random.number(6) + 1;
   for (let j = 0; j < numberOfCuisines; j += 1) {
