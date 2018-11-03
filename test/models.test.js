@@ -93,11 +93,9 @@ describe('Models.insertManyRestaurants', () => {
     });
   });
   test('should throw an error if given bad input', () => {
-    Models.insertManyRestaurants(12345, () => {
-      Models.getRestaurantById(1, (err, results) => {
-        expect(err).toBeTruthy();
-        expect(results).toBeFalsy();
-      });
+    Models.insertManyRestaurants([{ foo: 'bar' }], (err, results) => {
+      expect(err).toBeTruthy();
+      expect(results).toBeFalsy();
     });
   });
 });

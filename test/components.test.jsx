@@ -25,49 +25,47 @@ describe('Overview Component', () => {
 
 describe('Description Component', () => {
   test('renders', () => {
-    const wrapper = shallow(<Description />);
-
-    expect(wrapper.exists()).toBe(true);
+    let myObj = dummyData;
+    for (let i = 0; i < myObj.length; i += 1) {
+      const wrapper = shallow(<Description description={myObj[i].description} />);
+      expect(wrapper.exists()).toBe(true);
+    }
   });
 });
+
 describe('Details Component', () => {
-  test('renders', () => {
-    const wrapper = shallow(<Details />);
-
-    expect(wrapper.exists()).toBe(true);
+  test('renders for every datapoint in the database', () => {
+    let myObj = dummyData;
+    for (let i = 0; i < myObj.length; i += 1) {
+      myObj[i].cuisine_types = myObj[i].cuisine_types.split(',');
+      const wrapper = shallow(<Details restaurant={myObj[i]} />);
+      expect(wrapper.exists()).toBe(true);
+    }
   });
 });
-describe('LocTags Component', () => {
-  test('renders', () => {
-    const wrapper = shallow(<LocTags />);
 
-    expect(wrapper.exists()).toBe(true);
-  });
-});
-describe('NonALTags Component', () => {
-  test('renders', () => {
-    const wrapper = shallow(<NonALTags />);
-
-    expect(wrapper.exists()).toBe(true);
-  });
-});
 describe('PrivateDining Component', () => {
-  test('renders', () => {
+  test('renders when given no props', () => {
     const wrapper = shallow(<PrivateDining />);
 
     expect(wrapper.exists()).toBe(true);
   });
-});
-describe('Summary Component', () => {
-  test('renders', () => {
-    const wrapper = shallow(<Summary />);
+  test('renders when given "NULL" as input', () => {
+    const wrapper = shallow(<PrivateDining privateDiningText="NULL" />);
+
+    expect(wrapper.exists()).toBe(true);
+  });
+  test('renders when given props', () => {
+    const wrapper = shallow(<PrivateDining privateDiningText="Test Text!" />);
 
     expect(wrapper.exists()).toBe(true);
   });
 });
+
 describe('TopTags Component', () => {
+  let myObj = dummyData;
   test('renders', () => {
-    const wrapper = shallow(<TopTags />);
+    const wrapper = shallow(<TopTags tags={myObj[0].tags} />);
 
     expect(wrapper.exists()).toBe(true);
   });
@@ -109,8 +107,9 @@ describe('Glyphicon Component', () => {
 
 describe('LocTags Component', () => {
   test('renders LocTags for every Dummy Data restaurant', () => {
-    for (let i = 0; i < dummyData.length; i += 1) {
-      const wrapper = shallow(<LocTags restaurant={dummyData[i]} />);
+    let myObj = dummyData;
+    for (let i = 0; i < myObj.length; i += 1) {
+      const wrapper = shallow(<LocTags restaurant={myObj[i]} />);
       expect(wrapper.exists()).toBe(true);
     }
   });
@@ -118,8 +117,9 @@ describe('LocTags Component', () => {
 
 describe('NonALTags Component', () => {
   test('renders NonALTags for every Dummy Data restaurant', () => {
-    for (let i = 0; i < dummyData.length; i += 1) {
-      const wrapper = shallow(<NonALTags restaurant={dummyData[i]} />);
+    let myObj = dummyData;
+    for (let i = 0; i < myObj.length; i += 1) {
+      const wrapper = shallow(<NonALTags restaurant={myObj[i]} />);
       expect(wrapper.exists()).toBe(true);
     }
   });
@@ -127,12 +127,13 @@ describe('NonALTags Component', () => {
 
 describe('Summary Component', () => {
   test('renders Summary for every Dummy Data restaurant', () => {
-    for (let i = 0; i < dummyData.length; i += 1) {
+    let myObj = dummyData;
+    for (let i = 0; i < myObj.length; i += 1) {
       const wrapper = shallow(
         <Summary
-          review_average={dummyData[i].review_average}
-          review_count={dummyData[i].review_count}
-          cuisine_types={dummyData[i].cuisine_types}
+          review_average={myObj[i].review_average}
+          review_count={myObj[i].review_count}
+          cuisine_types={myObj[i].cuisine_types}
         />,
       );
       expect(wrapper.exists()).toBe(true);
