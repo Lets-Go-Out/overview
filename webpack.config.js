@@ -8,6 +8,9 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     rules: [
       // rules for modules (configure loaders, parser options, etc.)
@@ -20,6 +23,20 @@ module.exports = {
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
         },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+        ],
       },
     ],
   },
