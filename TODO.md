@@ -40,49 +40,45 @@
 
 *       [X] View All details button
 
-*   [ ] Task 2: split into separate components:
+*   [X] Task 2: split into separate components:
 
-*     [ ] Root:
-*       [ ] h1 tag with text
-*       [ ] Summary
-*       [ ] Description
-*       [ ] Details:
-
-
-*     [ ] Summary:
-*       [ ] ratings average
-*       [ ] ratings count
-*       [ ] price range
-*       [ ] cuisine type
-*       [ ] top tags
-
-*     [ ] Description:
-*       [ ] text
-*       [ ] Read More button
-
-*     [ ] Details:
-*       [ ] Details list:
-*         [ ] NonAdditionalNonLocationalTags
-*           [ ] Dining Style
-*           [ ] Cuisines
-*           [ ] Catering
-*           [ ] Dress Code
-*           [ ] Executive Chef
-*           [ ] Private Dining
-*           [ ] Private Party Facilities
-*           [ ]
+*     [X] Root:
+*       [X] h1 tag with text
+*       [X] Summary
+*       [X] Description
+*       [X] Details:
 
 
+*     [X] Summary:
+*       [X] ratings average
+*       [X] ratings count
+*       [X] price range
+*       [X] cuisine type
+*       [X] top tags
 
-*           [ ] Hours of operation
-*           [ ] Phone number
-*           [ ] Maps API widget
-*           [ ] Website
-*           [ ] Address (plus city, state, and zip)
-*           [ ] Neighborhood
-*       [ ] View All details button
+*     [X] Description:
+*       [X] text
+*       [X] Read More button
 
-* [ ] Tests
+*     [X] Details:
+*       [X] Details list:
+*         [X] NonAdditionalNonLocationalTags
+*           [X] Dining Style
+*           [X] Cuisines
+*           [X] Catering
+*           [X] Dress Code
+*           [X] Executive Chef
+*           [X] Private Dining
+*           [X] Private Party Facilities
+*           [X] Hours of operation
+*           [X] Phone number
+*           [X] Maps API widget
+*           [X] Website
+*           [X] Address (plus city, state, and zip)
+*           [X] Neighborhood
+*           [X] View All details button
+
+* [X] Tests
 
 * [X] Dining Style
 *   [X] schema

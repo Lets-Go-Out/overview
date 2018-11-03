@@ -3,46 +3,6 @@
 const Models = require('../database/models.js');
 const dummyData = require('../database/dummyData.json');
 
-test('Models.getAllRestaurants should exist', () => {
-  expect(Models.getAllRestaurants).toBeDefined();
-});
-
-test('Models.resetDatabase should delete all new records in the database, leaving only the dummy data', () => {
-  console.log('hello world?')
-  Models.resetDatabase(() => {
-    console.log('somewhere in the middle')
-    Models.getAllRestaurants((results) => {
-      console.log('am i getting here', expect);
-      expect(results).toEqual(dummyData);
-      expect(2).toEqual(23);
-    });
-  });
-});
-
-
-test('Models.getAllRestaurants should return truthy values', () => {
-  Models.resetDatabase(() => {
-    Models.getAllRestaurants((results) => {
-      expect(results).toBeTruthy();
-      expect(results[0]).toBeTruthy();
-    });
-  });
-});
-
-test('Models.getAllRestaurants should return an array of objects', () => {
-  Models.resetDatabase(() => {
-    Models.getAllRestaurants((err, results) => {
-      expect(Array.isArray(results)).toBeTruthy();
-      expect(Array.isArray(results[0])).toBe(false);
-      expect(typeof results[0]).toBe('object');
-      expect(typeof results[0] === 'string').toBe(false);
-      expect(typeof results[0] === 'number').toBe(false);
-      expect(typeof results[0] === 'function').toBe(false);
-      expect(typeof results[0] === 'symbol').toBe(false);
-    });
-  });
-});
-
 const newRestaurantObject0 = {
   id: '0',
   name: '0',
@@ -87,12 +47,18 @@ const newRestaurantObject1 = {
 
 const newRestaurantsArray = [newRestaurantObject0, newRestaurantObject1];
 
-test('Models.getRestaurantById should exist', () => {
-  expect(Models.getRestaurantById).toBeDefined();
+describe('Models.connection', () => {
+  test('should exist', () => {
+    expect(Models.connection).toBeDefined();
+  });
 });
 
-test('Models.getRestaurantById should return a truthy value, and not throw an error', () => {
-  Models.resetDatabase(() => {
+describe('Models.getRestaurantById', () => {
+  test('should exist', () => {
+    expect(Models.getRestaurantById).toBeDefined();
+  });
+
+  test('should return a truthy value, and not throw an error', () => {
     Models.getRestaurantById(1, (err, results) => {
       expect(results).toBeTruthy();
       expect(err).toBeFalsy();
@@ -100,66 +66,45 @@ test('Models.getRestaurantById should return a truthy value, and not throw an er
   });
 });
 
-test('Models.getRestaurantsById should return a specific value without throwing an error', () => {
-  Models.resetDatabase(() => {
-    Models.insertRestaurant(newRestaurantObject0, () => {
-      Models.getRestaurantById(0, (err, results) => {
-        expect(results).toEqual(newRestaurantObject0);
-        expect(err).toBeFalsy();
-      });
+describe('Models.getRestaurantsById', () => {
+  test('should return a specific value without throwing an error', () => {
+    Models.getRestaurantById(1, (err, results) => {
+      expect(results).toEqual(dummyData[0]);
+      expect(err).toBeFalsy();
     });
   });
 });
 
-test('Models.insertRestaurant should exist', () => {
-  expect(Models.insertRestaurant).toBeDefined();
-});
-
-test('Models.insertRestaurant should increase the number of restaurants in the database', () => {
-  Models.resetDatabase(() => {
-    Models.getAllRestaurants((err, results) => {
-      const restaurantsBeforeInsert = results;
-      Models.insertRestaurant(newRestaurantObject0, () => {
-        Models.getAllRestaurants((error, newResults) => {
-          const restaurantsAfterInsert = newResults;
-          expect(error).toBeFalsy();
-          expect(restaurantsBeforeInsert.length).toBeLessThan(restaurantsAfterInsert.length);
-        });
-      });
-    });
-  });
-});
-
-test('Models.insertRestaurant should add a speific restaurant to the database', () => {
-  Models.resetDatabase(() => {
-    Models.insertRestaurant(newRestaurantObject0, () => {
-      Models.getRestaurantsById(0, (error, results) => {
-        expect(error).toBeFalsy();
-        expect(results).toEqual(newRestaurantObject0);
-      });
-    });
-  });
-});
-
-test('Models.insertManyRestaurants should add multiple restaurants to the database', () => {
-  Models.resetDatabase(() => {
+describe('Models.insertManyRestaurants', () => {
+  test('should add multiple restaurants to the database', () => {
     Models.insertManyRestaurants(newRestaurantsArray, (err, results) => {
       expect(err).toBeFalsy();
       expect(results).toBeTruthy();
       expect(results.length).toEqual(102);
     });
   });
-});
-
-test('Models.insertManyRestaurants should add multiple, specific restaurants to the database', () => {
-  Models.resetDatabase(() => {
+  test('should add multiple, specific restaurants to the database', () => {
     Models.insertManyRestaurants(newRestaurantsArray, () => {
-      Models.getAllRestaurants((err, results) => {
+      Models.getRestaurantById(1, (err, results) => {
         expect(err).toBeFalsy();
         expect(results[100]).toEqual(newRestaurantObject0);
         expect(results[101]).toEqual(newRestaurantObject1);
-        expect(1).toEqual(2);
+      });
+    });
+  });
+  test('should throw an error if given bad input', () => {
+    Models.insertManyRestaurants(12345, () => {
+      Models.getRestaurantById(1, (err, results) => {
+        expect(err).toBeTruthy();
+        expect(results).toBeFalsy();
       });
     });
   });
 });
+
+
+// describe('Models.deleteDatabase', () => {
+//   test('should throw an error when given an invalid callback argument', () => {
+//     expect(Models.resetDatabase('Bad Callback'));
+//   });
+// });
