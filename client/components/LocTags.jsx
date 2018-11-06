@@ -1,5 +1,9 @@
 import React from 'react';
-import Glyphicon from './Glyphicon.jsx';
+import {
+  Media,
+} from 'react-bootstrap/lib';
+import getGlyph from './getGlyph.jsx';
+import '../styles/overview_styles.css';
 
 const LocTags = (props) => {
   const locTagsJsx = [];
@@ -17,21 +21,31 @@ const LocTags = (props) => {
     ['Cross Street', props.restaurant.cross_street],
     ['Parking Details', props.restaurant.parking_details],
     ['Public Transit', props.restaurant.public_transit],
-    ['Neighborhood', (<span className="neighborhood_link" onClick={() => alert('Feature Not Available')}>{props.restaurant.neighborhood}</span>)],
+    ['Neighborhood', (<span onClick={() => alert('Feature Not Available')}>{props.restaurant.neighborhood}</span>)],
   ];
 
   for (let i = 0; i < locationalTags.length; i += 1) {
     if (locationalTags[i][1] !== 'NULL') {
       locTagsJsx.push((
-        <div className="detail media">
-          <div className="media-left">
-            <Glyphicon tagName={locationalTags[i][0]} />
-          </div>
-          <div className="media-body">
-            <h4 className={`tag_name ${locationalTags[i][0].split(' ').join('_')}_name media-heading`}>{locationalTags[i][0]}</h4>
-            <p className={`tag_description ${locationalTags[i][0].split(' ').join('_')}_description`}>{locationalTags[i][1]}</p>
-          </div>
-        </div>
+        <Media key={i}>
+          <Media.Left>
+            {getGlyph(locationalTags[i][0])}
+          </Media.Left>
+          <Media.Body>
+            <Media.Heading>
+              {locationalTags[i][0]}
+            </Media.Heading>
+            <p
+              styleName={
+                ['Neighborhood_description', 'Address_description'].includes(`${locationalTags[i][0].split(' ').join('_')}_description`)
+                  ? `${locationalTags[i][0].split(' ').join('_')}_description`
+                  : ''
+              }
+            >
+              {locationalTags[i][1]}
+            </p>
+          </Media.Body>
+        </Media>
       ));
     }
   }

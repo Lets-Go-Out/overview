@@ -1,11 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import $ from 'jquery';
-
-import Summary from './components/Summary.jsx'; /* eslint-disable-line */
-import TopTags from './components/TopTags.jsx'; /* eslint-disable-line */
-import Description from './components/Description.jsx'; /* eslint-disable-line */
-import Details from './components/Details.jsx'; /* eslint-disable-line */
+import {
+  Grid, Row, Col, PageHeader, Button,
+} from 'react-bootstrap';
+import Summary from './Summary.jsx'; /* eslint-disable-line */
+import TopTags from './TopTags.jsx'; /* eslint-disable-line */
+import Description from './Description.jsx'; /* eslint-disable-line */
+import Details from './Details.jsx'; /* eslint-disable-line */
+import '../styles/overview_styles.css';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -22,12 +24,12 @@ class Overview extends React.Component {
   }
 
   componentDidMount() {
-    this.getRestaurantById();
+    this.getRestaurantById(this.state.currentRestaurantId);
   }
 
-  getRestaurantById() {
-    const restaurantId = { id: this.state.currentRestaurantId };
-    $.get(`/api/restaurants/overview/${restaurantId.id}`, (data) => {
+  getRestaurantById(restaurantId) {
+    const restaurantIdObj = { id: restaurantId };
+    $.get(`/api/restaurants/overview/${restaurantIdObj.id}`, (data) => {
       const myObj = data;
       myObj.tags = data.tags.split(',');
       myObj.cuisine_types = data.cuisine_types.split(',');
@@ -54,47 +56,59 @@ class Overview extends React.Component {
     // ];
 
     return (
-      <div className="container">
-        <div className="row">
-          <h1 className="page-header col-md-10 col-md-offset-1">{this.state.currentRestaurant.name}</h1>
-        </div>
-        <div className="row">
+      <Grid>
+        <Row>
+          <Col md={10} mdOffset={1}>
+            <PageHeader>{this.state.currentRestaurant.name}</PageHeader>
+          </Col>
+        </Row>
+        <Row>
           <Summary
+            styles={this.props.styles}
             review_average={this.state.currentRestaurant.review_average}
             review_count={this.state.currentRestaurant.review_count}
             cuisine_types={this.state.currentRestaurant.cuisine_types}
             price_range={this.state.currentRestaurant.price_range}
           />
-        </div>
-        <div className="row">
+        </Row>
+        <Row>
           <TopTags
+            styles={this.props.styles}
             tags={this.state.currentRestaurant.tags}
-            />
-        </div>
-        <div className="row">
+          />
+        </Row>
+        <Row>
           <Description
+            styles={this.props.styles}
             showFullDescriptionState={this.state.showFullDescription}
             description={this.state.currentRestaurant.description}
             showFullDescription={this.showFullDescription}
           />
-        </div>
-        <Details
-          restaurant={this.state.currentRestaurant}
-          showFullDetailsState={this.state.showFullDetails}
-        />
-        <button
-          className="btn btn-warning btn-lg col-md-3 col-md-offset-1 row"
-          type="button"
-          onClick={this.showFullDetails}
-        >
-          {
-            this.state.showFullDetails
-              ? 'Show Less'
-              : 'Show More Details'
-          }
-        </button>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossOrigin="anonymous" />
-      </div>
+        </Row>
+        <Row>
+          <Details
+            styles={this.props.styles}
+            restaurant={this.state.currentRestaurant}
+            showFullDetailsState={this.state.showFullDetails}
+          />
+        </Row>
+        <Row>
+          <Col md={3} mdOffset={1}>
+            <Button
+              bsStyle="warning"
+              bsSize="large"
+              type="button"
+              onClick={this.showFullDetails}
+            >
+              {
+                this.state.showFullDetails
+                  ? 'Show Less'
+                  : 'Show More Details'
+              }
+            </Button>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

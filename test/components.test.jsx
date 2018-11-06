@@ -18,8 +18,26 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Overview Component', () => {
   test('renders', () => {
     const wrapper = shallow(<Overview />);
-
     expect(wrapper.exists()).toBe(true);
+  });
+  test('showFullDescription method switches the showFullDescription state from false to true, and true to false', () => {
+    const wrapper = shallow(<Overview />);
+    const instance = wrapper.instance();
+    instance.showFullDescription();
+    expect(instance.state.showFullDescription).toEqual(true);
+    instance.showFullDescription();
+    expect(instance.state.showFullDescription).toEqual(false);
+  });
+  test('.getRestaurantById sets the state\'s currentRestaurant property to a restaurant from the database by ID', () => {
+    const wrapper = shallow(<Overview />);
+    const instance = wrapper.instance();
+    const myTestRestaurants = dummyData;
+    for (let i = 0; i < myTestRestaurants.length; i += 1) {
+      // myTestRestaurants[i].tags = myTestRestaurants[i].tags.split(',');
+      // myTestRestaurants[i].cuisine_types = myTestRestaurants[i].cuisine_types.split(',');
+      instance.getRestaurantById(i);
+      setTimeout(() => expect(instance.state.currentRestaurant).toEqual(myTestRestaurants[i]), 0);
+    }
   });
 });
 
@@ -36,9 +54,10 @@ describe('Description Component', () => {
 describe('Details Component', () => {
   test('renders for every datapoint in the database', () => {
     let myObj = dummyData;
+    let wrapper;
     for (let i = 0; i < myObj.length; i += 1) {
       myObj[i].cuisine_types = myObj[i].cuisine_types.split(',');
-      const wrapper = shallow(<Details restaurant={myObj[i]} />);
+      wrapper = shallow(<Details restaurant={myObj[i]} />);
       expect(wrapper.exists()).toBe(true);
     }
   });
@@ -50,10 +69,10 @@ describe('PrivateDining Component', () => {
 
     expect(wrapper.exists()).toBe(true);
   });
-  test('renders when given "NULL" as input', () => {
+  test('renders nothing when given "NULL" as input', () => {
     const wrapper = shallow(<PrivateDining privateDiningText="NULL" />);
 
-    expect(wrapper.exists()).toBe(true);
+    expect(wrapper.exists()).toBe(false);
   });
   test('renders when given props', () => {
     const wrapper = shallow(<PrivateDining privateDiningText="Test Text!" />);
@@ -85,10 +104,10 @@ describe('Glyphicon Component', () => {
     'Website',
     'Payment Methods',
     'Private Dining',
-    'Party Contact',
-    'Party Facilities',
+    'Private Party Contact',
+    'Private Party Facilities',
     'Public Transit',
-    'Specials and Promotions',
+    'Special Events and Promotions',
     'Additional Tags',
     'Review Count',
     'Address',
@@ -102,6 +121,10 @@ describe('Glyphicon Component', () => {
       const wrapper = shallow(<Glyphicon tagName={glyphTypes[i]} />);
       expect(wrapper.exists()).toBe(true);
     }
+  });
+  test('renders an error Glyphicon when given an invalid input', () => {
+    const wrapper = shallow(<Glyphicon tagName="__foobar!!!" />);
+    expect(wrapper.find('.glyphicon-alert').exists()).toBe(true);
   });
 });
 
@@ -133,6 +156,7 @@ describe('Summary Component', () => {
         <Summary
           review_average={myObj[i].review_average}
           review_count={myObj[i].review_count}
+          price_range={myObj[i].price_range}
           cuisine_types={myObj[i].cuisine_types}
         />,
       );

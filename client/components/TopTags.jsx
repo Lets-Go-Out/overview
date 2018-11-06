@@ -1,18 +1,35 @@
 import React from 'react';
+import {
+  Row, Col, Button,
+} from 'react-bootstrap';
+import '../styles/overview_styles.css';
 
 const TopTags = (props) => {
-  let topTagsJsx = [];
-  topTagsJsx.push((<button key={0} className={`top_tag btn btn-default ${props.tags[0]} col-md-3`}>{` ${props.tags[0]}`}</button>));
+  const topTagsJsx = [];
+
+  topTagsJsx.push((
+    <Col md={3}>
+      <Button key={0} bsStyle="default" styleName="top_tag">{` ${props.tags[0]}`}</Button>
+    </Col>
+  ));
+
   for (let i = 1; i < 3 && i < props.tags.length; i += 1) {
-    topTagsJsx.push((<button key={i} className={`top_tag btn btn-default ${props.tags[i]} col-md-3`}>{`${props.tags[i]}`}</button>));
+    topTagsJsx.push((
+      <Col md={3}>
+        <Button key={i} bsStyle="default" styleName="top_tag">{`${props.tags[i]}`}</Button>
+      </Col>
+    ));
   }
+
   return (
-    <div className="top_tags row col-md-10 col-md-offset-1">
-      <h3>
-        <span className="col-md-3 col-lg-2">Top Tags:</span>
-        {topTagsJsx}
-      </h3>
-    </div>
+    <Row>
+      <Col md={10} mdOffset={1}>
+        <h3>
+          <Col md={3} lg={2}>Top Tags:</Col>
+          {topTagsJsx}
+        </h3>
+      </Col>
+    </Row>
   );
 };
 
