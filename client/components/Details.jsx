@@ -1,8 +1,12 @@
 import React from 'react';
-import Glyphicon from './Glyphicon.jsx';
+import {
+  Row, Col, Well, Thumbnail, Media,
+} from 'react-bootstrap/lib';
+import getGlyph from './getGlyph.jsx';
 import PrivateDining from './PrivateDining.jsx';
 import LocTags from './LocTags.jsx';
 import NonALTags from './NonALTags.jsx';
+import '../styles/overview_styles.css';
 
 const Details = (props) => {
   const nonALTagsJsx = [];
@@ -22,10 +26,8 @@ const Details = (props) => {
     ['Special Events and Promotions', props.restaurant.promos],
   ];
 
-
-
   for (let i = 0; i < props.restaurant.tags.length; i += 1) {
-    tagsJsx.push((<span key={i} className={`additional_tag ${props.restaurant.tags[i]}`}>{`${props.restaurant.tags[i]}, `}</span>));
+    tagsJsx.push((<span key={i} styleName={'additional_tag'}>{`${props.restaurant.tags[i]}, `}</span>));
   }
 
   const detailsWellStyle = {
@@ -37,39 +39,42 @@ const Details = (props) => {
   };
 
   return (
-    <div className="row col-md-10 col-md-offset-1">
-    <div style={detailsWellStyle} className="well well-lg details_well">
-      <div className="details row">
-        <NonALTags restaurant={props.restaurant} />
-        <div className="ALTags col-md-6">
-          <div className="row">
-            <div className="thumbnail">
-              <img src="../../images/stock_map.png" alt="Stock Map" />
-              <div className="caption">
-                <h4>MAP GOES HERE</h4>
-                <p>This feature is not yet included</p>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <LocTags restaurant={props.restaurant} />
-            <div className="media">
-              <div className="media-left">
-                <Glyphicon tagName="Additional Tags" />
-              </div>
-              <div className="media-body">
-                <h4 className="tag_name media-heading">Additional Tags</h4>
-                <p>
-                  {tagsJsx}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <PrivateDining privateDiningText={props.restaurant.private_dining} />
-    </div>
-    </div>
+    <Row>
+      <Col md={10} mdOffset={1}>
+        <Well
+          bsSize="lg"
+          style={detailsWellStyle}
+          styleName="details_well"
+        >
+          <Row>
+            <NonALTags restaurant={props.restaurant} />
+            <Col styleName="ALTags" md={6}>
+              <Row>
+                <Thumbnail src="../../images/stock_map.png" alt="Stock Map">
+                  <h4>MAP GOES HERE</h4>
+                  <p>This feature is not yet included</p>
+                </Thumbnail>
+              </Row>
+              <Row>
+                <LocTags restaurant={props.restaurant} />
+                <Media>
+                  <Media.Left>
+                    {getGlyph('Additional Tags')}
+                  </Media.Left>
+                  <Media.Body>
+                    <Media.Heading>Additional Tags</Media.Heading>
+                    <p>
+                      {tagsJsx}
+                    </p>
+                  </Media.Body>
+                </Media>
+              </Row>
+            </Col>
+          </Row>
+          <PrivateDining privateDiningText={props.restaurant.private_dining} />
+        </Well>
+      </Col>
+    </Row>
   );
 };
 

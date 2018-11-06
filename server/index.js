@@ -8,19 +8,6 @@ app.use(express.static('public'));
 // app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/api/restaurants/allRestaurants', (req, res) => {
-  console.log('hi from app.getall! ');
-  Models.getAllRestaurants((error, results) => {
-    if (error) {
-      res.status(404);
-      console.error(error);
-      res.send('Something went wrong!');
-    } else {
-      res.send(results);
-    }
-  });
-});
-
 app.get('/api/restaurants/overview/:id', (req, res) => {
   console.log('request params: ', req.params);
   Models.getRestaurantById(req.params.id, (err, results) => {

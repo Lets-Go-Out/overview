@@ -87,17 +87,15 @@ describe('Models.insertManyRestaurants', () => {
     Models.insertManyRestaurants(newRestaurantsArray, () => {
       Models.getRestaurantById(1, (err, results) => {
         expect(err).toBeFalsy();
-        expect(results[100]).toEqual(newRestaurantObject0);
-        expect(results[101]).toEqual(newRestaurantObject1);
+        expect(results[100]).toEqual([newRestaurantObject0]);
+        expect(results[101]).toEqual([newRestaurantObject1]);
       });
     });
   });
   test('should throw an error if given bad input', () => {
-    Models.insertManyRestaurants(12345, () => {
-      Models.getRestaurantById(1, (err, results) => {
-        expect(err).toBeTruthy();
-        expect(results).toBeFalsy();
-      });
+    Models.insertManyRestaurants([{ foo: 'bar' }], (err, results) => {
+      expect(err).toBeTruthy();
+      expect(results).toBeFalsy();
     });
   });
 });

@@ -1,58 +1,66 @@
 import React from 'react';
-import Glyphicon from './Glyphicon.jsx'; /* eslint-disable-line */
+import $ from 'jquery';
+import {
+  Row, Col, Glyphicon,
+} from 'react-bootstrap';
+import getGlyph from './getGlyph.jsx'; /* eslint-disable-line */
+import '../styles/overview_styles.css';
 
-const Summary = (props) => {
-  let starsJsx = [];
-  const numOfStarHalves = props.review_average / 5;
-  for (let i = 0; i < numOfStarHalves; i += 2) {
-    starsJsx.push((<span className={'glyphicon glyphicon-star'} />));
+class Summary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      reviewModuleComponent: [],
+    };
+    this.getReviewComponent = this.getReviewComponent.bind(this);
   }
-  let priceRange;
-  switch (props.price_range) {
-    case '$':
-      priceRange = ' 30 and under ';
-      break;
-    case '$$':
-      priceRange = ' 30 and under ';
-      break;
-    case '$$$':
-      priceRange = ' 31 to 50 ';
-      break;
-    case '$$$$':
-      priceRange = ' 50 and over ';
-      break;
-    case '$$$$$':
-      priceRange = ' 50 and over ';
-      break;
-    default:
-      priceRange = ' Oops! Something went wrong...';
-      break;
+
+  getReviewComponent() {
+    $.get('/restaurants/:restaurantid/reviewModuleComponent', (jsx) => {
+      this.setState({ reviewModuleComponent: jsx });
+    });
   }
-  return (
-    <div className="summaryDiv row col-md-10 col-md-offset-1">
-        <div className="review_average col-md-2 col-sm-4">
-          <span className="review_average_stars">
-            {starsJsx}
-            {' '}
-          </span>
-          <span className="review_average_number">
-            {`${props.review_average / 10} `}
-          </span>
-        </div>
-      <div className="review_count col-md-3 col-sm-8">
-          <Glyphicon tagName="Review Count" />
-          {` ${props.review_count} reviews `}
-      </div>
-      <div className="price_range col-md-3 col-sm-4">
-        <Glyphicon tagName="Price Range" />
-        {priceRange}
-      </div>
-      <div className="cuisine_type col-md-3 col-sm-8">
-        <Glyphicon tagName="Cuisine Type" />
-        {` ${props.cuisine_types[0]} `}
-      </div>
-    </div>
-  );
-};
+
+  render() {
+    let priceRange;
+    switch (this.props.price_range) {
+      case '$':
+        priceRange = ' 30 and under ';
+        break;
+      case '$$':
+        priceRange = ' 30 and under ';
+        break;
+      case '$$$':
+        priceRange = ' 31 to 50 ';
+        break;
+      case '$$$$':
+        priceRange = ' 50 and over ';
+        break;
+      case '$$$$$':
+        priceRange = ' 50 and over ';
+        break;
+      default:
+        priceRange = ' Oops! Something went wrong...';
+        break;
+    }
+    return (
+      <Row>
+        <Col md={10} mdOffset={1}>
+          <Col md={6} sm={3}>
+            {this.state.reviewModuleComponent}
+          </Col>
+          <Col styleName={`price_range`} md={3} sm={4}>
+            {getGlyph('Price Range')}
+            {priceRange}
+          </Col>
+          <Col styleName="cuisine_type" md={3} sm={8}>
+            {getGlyph('Cuisine Type')}
+            {` ${this.props.cuisine_types[0]} `}
+          </Col>
+        </Col>
+      </Row>
+    );
+  }
+}
 
 export default Summary;

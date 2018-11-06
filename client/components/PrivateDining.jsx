@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  Button,
+} from 'react-bootstrap';
+import '../styles/overview_styles.css';
 
 const PrivateDining = (props) => {
   if (!props) {
@@ -11,13 +15,14 @@ const PrivateDining = (props) => {
         <p>
           {props.privateDiningText}
         </p>
-        <button
-          className="btn btn-default btn-lg"
+        <Button
+          bsStyle="default"
+          bsSize="lg"
           type="button"
           onClick={() => alert('Feature not included')} /* eslint-disable-line */
         >
           View Private Dining Details
-        </button>
+        </Button>
       </div>
     );
   }

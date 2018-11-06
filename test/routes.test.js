@@ -6,8 +6,6 @@ const Models = require('../database/models.js');
 
 test('GET requests to api/restaurants/overview should return a list of all restaurants', () => {
   $.get('api/restaurants/overview', (data) => {
-    Models.resetDatabase(() => {
-      expect(data).toEqual(dummyData);
-    });
+    expect(data).toEqual(dummyData);
   });
 });
