@@ -3,7 +3,7 @@ import {
   Media,
 } from 'react-bootstrap/lib';
 import getGlyph from './getGlyph.jsx';
-import '../styles/overview_styles.css';
+import styles from '../styles/overview_styles.css';
 
 const LocTags = (props) => {
   const locTagsJsx = [];
@@ -38,7 +38,7 @@ const LocTags = (props) => {
             <p
               styleName={
                 ['Neighborhood_description', 'Address_description'].includes(`${locationalTags[i][0].split(' ').join('_')}_description`)
-                  ? `${locationalTags[i][0].split(' ').join('_')}_description`
+                  ? `styles.${locationalTags[i][0].split(' ').join('_')}_description`
                   : ''
               }
             >

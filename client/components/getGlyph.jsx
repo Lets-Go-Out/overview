@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Glyphicon,
 } from 'react-bootstrap/lib';
-import '../styles/overview_styles.css';
+import styles from '../styles/overview_styles.css';
 
 const getGlyph = (glyphName) => {
   const glyphStyle = {

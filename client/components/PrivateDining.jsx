@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Button,
 } from 'react-bootstrap';
-import '../styles/overview_styles.css';
 
 const PrivateDining = (props) => {
   if (!props) {

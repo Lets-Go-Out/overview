@@ -4,7 +4,7 @@ import {
   Row, Col, Glyphicon,
 } from 'react-bootstrap';
 import getGlyph from './getGlyph.jsx'; /* eslint-disable-line */
-import '../styles/overview_styles.css';
+import styles from '../styles/overview_styles.css';
 
 class Summary extends React.Component {
   constructor(props) {
@@ -49,11 +49,11 @@ class Summary extends React.Component {
           <Col md={6} sm={3}>
             {this.state.reviewModuleComponent}
           </Col>
-          <Col styleName={`price_range`} md={3} sm={4}>
+          <Col styleName="styles.price_range" md={3} sm={4}>
             {getGlyph('Price Range')}
             {priceRange}
           </Col>
-          <Col styleName="cuisine_type" md={3} sm={8}>
+          <Col styleName="styles.cuisine_type" md={3} sm={8}>
             {getGlyph('Cuisine Type')}
             {` ${this.props.cuisine_types[0]} `}
           </Col>
