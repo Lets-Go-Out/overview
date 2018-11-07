@@ -2,11 +2,11 @@ import React from 'react';
 import {
   Row, Col, Well, Thumbnail, Media,
 } from 'react-bootstrap/lib';
+import 'bootstrap/dist/css/bootstrap.css';
 import getGlyph from './getGlyph.jsx';
 import PrivateDining from './PrivateDining.jsx';
 import LocTags from './LocTags.jsx';
 import NonALTags from './NonALTags.jsx';
-import 'bootstrap/dist/css/bootstrap.css';
 import styles from '../styles/overview_styles.css';
 
 const Details = (props) => {
@@ -51,7 +51,7 @@ const Details = (props) => {
             <NonALTags restaurant={props.restaurant} />
             <Col styleName="styles.ALTags" md={6}>
               <Row>
-                <Thumbnail src="../../images/stock_map.png" alt="Stock Map">
+                <Thumbnail src="stock_map.png" alt="Stock Map">
                   <h4>MAP GOES HERE</h4>
                   <p>This feature is not yet included</p>
                 </Thumbnail>
