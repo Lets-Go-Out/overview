@@ -1,9 +1,8 @@
 h1, p, div, span {
   color: #222;
-  font-size: ;
 }
 
-h2, h3, h4 {
+h2, h3, h4, .tag_name {
   color: #600;
   font-weight: bold;
 }

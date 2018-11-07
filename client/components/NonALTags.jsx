@@ -34,7 +34,7 @@ const NonALTags = (props) => {
             {getGlyph(nonAdditionalNonLocationalTags[i][0])}
           </Media.Left>
           <Media.Body>
-            <Media.Heading>
+            <Media.Heading styleName="styles.tag_name">
               {nonAdditionalNonLocationalTags[i][0]}
             </Media.Heading>
             <p

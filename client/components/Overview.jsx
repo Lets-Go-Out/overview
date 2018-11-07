@@ -55,8 +55,6 @@ class Overview extends React.Component {
     // ];
 
     return (
-      <div>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
       <Grid>
         <Row>
           <Col md={10} mdOffset={1}>
@@ -106,7 +104,6 @@ class Overview extends React.Component {
           </Col>
         </Row>
       </Grid>
-      </div>
     );
   }
 }

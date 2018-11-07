@@ -6,8 +6,8 @@ import getGlyph from './getGlyph.jsx';
 import PrivateDining from './PrivateDining.jsx';
 import LocTags from './LocTags.jsx';
 import NonALTags from './NonALTags.jsx';
-import styles from '../styles/overview_styles.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import styles from '../styles/overview_styles.css';
 
 const Details = (props) => {
   const nonALTagsJsx = [];
@@ -63,7 +63,7 @@ const Details = (props) => {
                     {getGlyph('Additional Tags')}
                   </Media.Left>
                   <Media.Body>
-                    <Media.Heading>Additional Tags</Media.Heading>
+                    <Media.Heading styleName="styles.tag_name">Additional Tags</Media.Heading>
                     <p>
                       {tagsJsx}
                     </p>

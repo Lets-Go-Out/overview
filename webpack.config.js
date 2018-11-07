@@ -26,24 +26,6 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: [
-          path.resolve(__dirname, 'node_modules'),
-        ],
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.css$/,
         include: [
           path.resolve(__dirname, 'node_modules/bootstrap/dist/css'),
         ],
@@ -56,6 +38,24 @@ module.exports = {
             options: {
               modules: true,
               localIdentName: '[local]',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        exclude: [
+          path.resolve(__dirname, 'node_modules'),
+        ],
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
             },
           },
         ],

@@ -32,7 +32,7 @@ const LocTags = (props) => {
             {getGlyph(locationalTags[i][0])}
           </Media.Left>
           <Media.Body>
-            <Media.Heading>
+            <Media.Heading styleName="styles.tag_name">
               {locationalTags[i][0]}
             </Media.Heading>
             <p
