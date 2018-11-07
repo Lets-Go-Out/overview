@@ -4,7 +4,7 @@ const Models = require('../database/models.js');
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));

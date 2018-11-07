@@ -6,7 +6,8 @@ import getGlyph from './getGlyph.jsx';
 import PrivateDining from './PrivateDining.jsx';
 import LocTags from './LocTags.jsx';
 import NonALTags from './NonALTags.jsx';
-import '../styles/overview_styles.css';
+import styles from '../styles/overview_styles.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const Details = (props) => {
   const nonALTagsJsx = [];
@@ -27,7 +28,7 @@ const Details = (props) => {
   ];
 
   for (let i = 0; i < props.restaurant.tags.length; i += 1) {
-    tagsJsx.push((<span key={i} styleName={'additional_tag'}>{`${props.restaurant.tags[i]}, `}</span>));
+    tagsJsx.push((<span key={i} styleName="styles.additional_tag">{`${props.restaurant.tags[i]}, `}</span>));
   }
 
   const detailsWellStyle = {
@@ -44,11 +45,11 @@ const Details = (props) => {
         <Well
           bsSize="lg"
           style={detailsWellStyle}
-          styleName="details_well"
+          styleName="styles.details_well"
         >
           <Row>
             <NonALTags restaurant={props.restaurant} />
-            <Col styleName="ALTags" md={6}>
+            <Col styleName="styles.ALTags" md={6}>
               <Row>
                 <Thumbnail src="../../images/stock_map.png" alt="Stock Map">
                   <h4>MAP GOES HERE</h4>

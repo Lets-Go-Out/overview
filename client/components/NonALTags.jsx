@@ -3,7 +3,7 @@ import {
   Col, Media,
 } from 'react-bootstrap';
 import getGlyph from './getGlyph.jsx';
-import '../styles/overview_styles.css';
+import styles from '../styles/overview_styles.css';
 
 const NonALTags = (props) => {
   const nonALTagsJsx = [];
@@ -23,7 +23,7 @@ const NonALTags = (props) => {
   ];
 
   if (props.restaurant.private_dining !== 'NULL') {
-    nonAdditionalNonLocationalTags.unshift(['Private Dining', props.restaurant.private_dining === '0' ? 'NULL' : (<span styleName="private_dining_text">View Private Dining Options</span>)]);
+    nonAdditionalNonLocationalTags.unshift(['Private Dining', props.restaurant.private_dining === '0' ? 'NULL' : (<span styleName="styles.private_dining_text">View Private Dining Options</span>)]);
   }
 
   for (let i = 0; i < nonAdditionalNonLocationalTags.length; i += 1) {
@@ -40,7 +40,7 @@ const NonALTags = (props) => {
             <p
               styleName={
                 ['Website_description'].includes(nonAdditionalNonLocationalTags[i][0].split(' ').join('_'))
-                  ? `${nonAdditionalNonLocationalTags[i][0].split(' ').join('_')}_description`
+                  ? `styles.${nonAdditionalNonLocationalTags[i][0].split(' ').join('_')}_description`
                   : ''
               }
             >

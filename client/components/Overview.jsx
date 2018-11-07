@@ -7,7 +7,6 @@ import Summary from './Summary.jsx'; /* eslint-disable-line */
 import TopTags from './TopTags.jsx'; /* eslint-disable-line */
 import Description from './Description.jsx'; /* eslint-disable-line */
 import Details from './Details.jsx'; /* eslint-disable-line */
-import '../styles/overview_styles.css';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -29,7 +28,7 @@ class Overview extends React.Component {
 
   getRestaurantById(restaurantId) {
     const restaurantIdObj = { id: restaurantId };
-    $.get(`/api/restaurants/overview/${restaurantIdObj.id}`, (data) => {
+    $.get(`http://localhost:3002/api/restaurants/overview/${restaurantIdObj.id}`, (data) => {
       const myObj = data;
       myObj.tags = data.tags.split(',');
       myObj.cuisine_types = data.cuisine_types.split(',');
@@ -56,6 +55,8 @@ class Overview extends React.Component {
     // ];
 
     return (
+      <div>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
       <Grid>
         <Row>
           <Col md={10} mdOffset={1}>
@@ -64,7 +65,6 @@ class Overview extends React.Component {
         </Row>
         <Row>
           <Summary
-            styles={this.props.styles}
             review_average={this.state.currentRestaurant.review_average}
             review_count={this.state.currentRestaurant.review_count}
             cuisine_types={this.state.currentRestaurant.cuisine_types}
@@ -73,13 +73,11 @@ class Overview extends React.Component {
         </Row>
         <Row>
           <TopTags
-            styles={this.props.styles}
             tags={this.state.currentRestaurant.tags}
           />
         </Row>
         <Row>
           <Description
-            styles={this.props.styles}
             showFullDescriptionState={this.state.showFullDescription}
             description={this.state.currentRestaurant.description}
             showFullDescription={this.showFullDescription}
@@ -87,7 +85,6 @@ class Overview extends React.Component {
         </Row>
         <Row>
           <Details
-            styles={this.props.styles}
             restaurant={this.state.currentRestaurant}
             showFullDetailsState={this.state.showFullDetails}
           />
@@ -109,6 +106,7 @@ class Overview extends React.Component {
           </Col>
         </Row>
       </Grid>
+      </div>
     );
   }
 }

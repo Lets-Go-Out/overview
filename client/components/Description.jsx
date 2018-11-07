@@ -2,14 +2,15 @@ import React from 'react';
 import {
   Row, Col,
 } from 'react-bootstrap/lib';
-import '../styles/overview_styles.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import styles from '../styles/overview_styles.css';
 
 const Description = (props) => {
   const truncatedDescription = props.description.slice(0, 180);
   return (
     <Row>
       <Col sm={10} smOffset={1}>
-        <p styleName="description_paragraph">
+        <p styleName="styles.description_paragraph">
           {
             props.showFullDescriptionState
               ? `${props.description} `
@@ -18,7 +19,7 @@ const Description = (props) => {
         </p>
       </Col>
       <Col
-        styleName="description_read_more"
+        styleName="styles.description_read_more"
         sm={2}
         smOffset={2}
         onClick={props.showFullDescription}

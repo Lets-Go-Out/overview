@@ -26,6 +26,9 @@ module.exports = {
       },
       {
         test: /\.css$/,
+        exclude: [
+          path.resolve(__dirname, 'node_modules'),
+        ],
         use: [
           {
             loader: 'style-loader',
@@ -38,6 +41,28 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.css$/,
+        include: [
+          path.resolve(__dirname, 'node_modules/bootstrap/dist/css'),
+        ],
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[local]',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000',
       },
     ],
   },
