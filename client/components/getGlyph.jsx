@@ -6,7 +6,7 @@ import styles from '../styles/overview_styles.css';
 
 const getGlyph = (glyphName) => {
   const glyphStyle = {
-    fontSize: '26px',
+    fontSize: '20px',
   };
   console.log('getGlyph got ', glyphName);
   switch (glyphName) {

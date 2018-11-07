@@ -7,6 +7,7 @@ import Summary from './Summary.jsx'; /* eslint-disable-line */
 import TopTags from './TopTags.jsx'; /* eslint-disable-line */
 import Description from './Description.jsx'; /* eslint-disable-line */
 import Details from './Details.jsx'; /* eslint-disable-line */
+import styles from '../styles/overview_styles.css';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -55,8 +56,6 @@ class Overview extends React.Component {
     // ];
 
     return (
-      <div>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
       <Grid>
         <Row>
           <Col md={10} mdOffset={1}>
@@ -65,8 +64,7 @@ class Overview extends React.Component {
         </Row>
         <Row>
           <Summary
-            review_average={this.state.currentRestaurant.review_average}
-            review_count={this.state.currentRestaurant.review_count}
+            restaurantId={this.state.currentRestaurant.restaurantId}
             cuisine_types={this.state.currentRestaurant.cuisine_types}
             price_range={this.state.currentRestaurant.price_range}
           />
@@ -92,21 +90,20 @@ class Overview extends React.Component {
         <Row>
           <Col md={3} mdOffset={1}>
             <Button
-              bsStyle="warning"
+              styleName="styles.view_all_details"
               bsSize="large"
               type="button"
               onClick={this.showFullDetails}
             >
               {
                 this.state.showFullDetails
-                  ? 'Show Less'
-                  : 'Show More Details'
+                  ? 'Hide details'
+                  : 'View all details'
               }
             </Button>
           </Col>
         </Row>
       </Grid>
-      </div>
     );
   }
 }

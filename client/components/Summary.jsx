@@ -4,6 +4,7 @@ import {
   Row, Col, Glyphicon,
 } from 'react-bootstrap';
 import getGlyph from './getGlyph.jsx'; /* eslint-disable-line */
+import MiniSummary from './MiniSummary.jsx';
 import styles from '../styles/overview_styles.css';
 
 class Summary extends React.Component {
@@ -46,8 +47,8 @@ class Summary extends React.Component {
     return (
       <Row>
         <Col md={10} mdOffset={1}>
-          <Col md={6} sm={3}>
-            {this.state.reviewModuleComponent}
+          <Col md={4} sm={3}>
+            <MiniSummary id={this.props.restaurantId}/>
           </Col>
           <Col styleName="styles.price_range" md={3} sm={4}>
             {getGlyph('Price Range')}
