@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for client/components/Summary.jsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">client/components</a> Summary.jsx
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">47.37% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>9/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">16.67% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/1</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">47.37% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/19</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-yes">301x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import Glyphicon from './Glyphicon.jsx'; /* eslint-disable-line */
+&nbsp;
+const Summary = (props) =&gt; {
+  let starsJsx = [];
+  const numOfStarHalves = props.review_average / 5;
+  for (let i = 0; i &lt; numOfStarHalves; i += 2) {
+    starsJsx.push((&lt;span className={'glyphicon glyphicon-star'} /&gt;));
+  }
+  let priceRange;
+  switch (props.price_range) {
+<span class="branch-0 cbranch-no" title="branch not covered" >    case '$':</span>
+<span class="cstat-no" title="statement not covered" >      priceRange = ' 30 and under ';</span>
+<span class="cstat-no" title="statement not covered" >      break;</span>
+<span class="branch-1 cbranch-no" title="branch not covered" >    case '$$':</span>
+<span class="cstat-no" title="statement not covered" >      priceRange = ' 30 and under ';</span>
+<span class="cstat-no" title="statement not covered" >      break;</span>
+<span class="branch-2 cbranch-no" title="branch not covered" >    case '$$$':</span>
+<span class="cstat-no" title="statement not covered" >      priceRange = ' 31 to 50 ';</span>
+<span class="cstat-no" title="statement not covered" >      break;</span>
+<span class="branch-3 cbranch-no" title="branch not covered" >    case '$$$$':</span>
+<span class="cstat-no" title="statement not covered" >      priceRange = ' 50 and over ';</span>
+<span class="cstat-no" title="statement not covered" >      break;</span>
+<span class="branch-4 cbranch-no" title="branch not covered" >    case '$$$$$':</span>
+<span class="cstat-no" title="statement not covered" >      priceRange = ' 50 and over ';</span>
+<span class="cstat-no" title="statement not covered" >      break;</span>
+    default:
+      priceRange = ' Oops! Something went wrong...';
+      break;
+  }
+  return (
+    &lt;div className="summaryDiv row col-md-10 col-md-offset-1"&gt;
+        &lt;div className="review_average col-md-2 col-sm-4"&gt;
+          &lt;span className="review_average_stars"&gt;
+            {starsJsx}
+            {' '}
+          &lt;/span&gt;
+          &lt;span className="review_average_number"&gt;
+            {`${props.review_average / 10} `}
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;div className="review_count col-md-3 col-sm-8"&gt;
+          &lt;Glyphicon tagName="Review Count" /&gt;
+          {` ${props.review_count} reviews `}
+      &lt;/div&gt;
+      &lt;div className="price_range col-md-3 col-sm-4"&gt;
+        &lt;Glyphicon tagName="Price Range" /&gt;
+        {priceRange}
+      &lt;/div&gt;
+      &lt;div className="cuisine_type col-md-3 col-sm-8"&gt;
+        &lt;Glyphicon tagName="Cuisine Type" /&gt;
+        {` ${props.cuisine_types[0]} `}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+&nbsp;
+export default Summary;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Nov 03 2018 11:18:40 GMT-0700 (Pacific Daylight Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

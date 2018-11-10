@@ -1,0 +1,82 @@
+{
+  "name": "hrsf105-overview-module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest --verbose",
+    "async-test": "jest --detectOpenHandles --verbose",
+    "test:watch": "jest --watchAll --verbose",
+    "test:coverage": "jest --verbose --coverage",
+    "seed": "node ./database/seed.js",
+    "start": "node server/index.js",
+    "build": "webpack --watch"
+  },
+  "author": "",
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-enzyme",
+    "testEnvironment": "enzyme",
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "bower_components",
+      "shared"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less)$": "hrsf105-overview-module/__mocks__/styleMock.js",
+      "\\.(gif|ttf|eot|svg)$": "hrsf105-overview-module/__mocks__/fileMock.js"
+    }
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "acorn": "^6.0.2",
+    "ajv": "^6.5.4",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-react-css-modules": "^3.4.2",
+    "body-parser": "^1.18.3",
+    "bootstrap": "^3.3.7",
+    "cors": "^2.8.5",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "express": "^4.16.4",
+    "faker": "^4.1.0",
+    "file-loader": "^2.0.0",
+    "jest": "^23.6.0",
+    "jest-enzyme": "^7.0.0",
+    "jquery": "^3.3.1",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.5",
+    "popper.js": "^1.14.4",
+    "react": "^16.6.0",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.6.0",
+    "react-redux": "^5.1.0",
+    "redux": "^4.0.1",
+    "regenerator-runtime": "^0.12.1",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.23.1",
+    "webpack-cli": "^3.1.2"
+  },
+  "devDependencies": {
+    "css-loader": "^1.0.1",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1"
+  }
+}

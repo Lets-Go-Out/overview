@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for client/components/NonALTags.jsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">client/components</a> NonALTags.jsx
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>9/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">83.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>5/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/1</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/9</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-yes">50x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-yes">1150x</span>
+<span class="cline-any cline-yes">800x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">100x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import Glyphicon from './Glyphicon.jsx';
+&nbsp;
+const NonALTags = (props) =&gt; {
+  const nonALTagsJsx = [];
+&nbsp;
+  const nonAdditionalNonLocationalTags = [
+    ['Dining Style', props.restaurant.dining_style],
+    ['Cuisines', props.restaurant.cuisine_types.join(', ')],
+    ['Hours of Operation', props.restaurant.hours],
+    ['Catering', props.restaurant.catering],
+    ['Website', props.restaurant.website],
+    ['Payment Methods', props.restaurant.payment_options],
+    ['Dress Code', props.restaurant.dress_code],
+    ['Executive Chef', props.restaurant.executive_chef],
+    ['Private Party Contact', props.restaurant.private_party_contact],
+    ['Private Party Facilities', props.restaurant.private_party_fac],
+    ['Special Events and Promotions', props.restaurant.promos],
+  ];
+&nbsp;
+  if (props.restaurant.private_dining !== 'NULL') {
+    nonAdditionalNonLocationalTags.unshift(['Private Dining', props.restaurant.private_dining === '0' ? <span class="branch-0 cbranch-no" title="branch not covered" >'NULL' </span>: (&lt;span className="private_dining_text"&gt;View Private Dining Options&lt;/span&gt;)]);
+  }
+&nbsp;
+  for (let i = 0; i &lt; nonAdditionalNonLocationalTags.length; i += 1) {
+    if (nonAdditionalNonLocationalTags[i][1] !== 'NULL') {
+      nonALTagsJsx.push((
+        &lt;div className="detail media"&gt;
+          &lt;div className="media-left"&gt;
+            &lt;Glyphicon tagName={nonAdditionalNonLocationalTags[i][0]} /&gt;
+          &lt;/div&gt;
+          &lt;div className="media-body"&gt;
+            &lt;h4 className={`tag_name ${nonAdditionalNonLocationalTags[i][0].split(' ').join('_')}_name media-heading`}&gt;{nonAdditionalNonLocationalTags[i][0]}&lt;/h4&gt;
+            &lt;div className={`tag_description ${nonAdditionalNonLocationalTags[i][0].split(' ').join('_')}_description`}&gt;{nonAdditionalNonLocationalTags[i][1]}&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      ));
+    }
+  }
+&nbsp;
+&nbsp;
+  return (
+    &lt;div className="NonALTagsDiv col-md-6"&gt;
+      {nonALTagsJsx}
+    &lt;/div&gt;
+  );
+};
+&nbsp;
+export default NonALTags;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Nov 03 2018 11:18:40 GMT-0700 (Pacific Daylight Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

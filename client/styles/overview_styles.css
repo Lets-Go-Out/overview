@@ -1,0 +1,117 @@
+.overview_grid {
+  font-family: BrandonText,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  -webkit-font-smoothing: antialiased;
+  color: #222;
+}
+
+.overview_header {
+  font-size: 48px;
+  text-transform: capitalize;
+}
+
+.top_tags_row, .restaurant_description {
+  margin-top: 16px;
+}
+
+.top_tag_heading, .tag_name, .private_dining_header {
+  color: #600;
+  font-weight: bold;
+}
+
+.overview_header, {
+  font-size: 48px;
+}
+
+.ALTags {
+  margin-top: 15px;
+}
+
+.Address_description, .Neighborhood_description, .Website_description, .private_dining_text, .description_read_more {
+  color: #da3743;
+}
+
+.Address_description:hover, .Neighborhood_description:hover, .Website_description:hover, .private_dining_text:hover, .description_read_more:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.additional_tag {
+  color: #888;
+}
+
+.additional_tag:hover {
+  color: #222;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.description_paragraph, .description_read_more, .top_tag {
+  font-size: 16px;
+}
+
+.review_average_stars,  .review_average_number, .review_count, .price_range, .cuisine_type, .top_tag_heading, .private_dining_header {
+  font-size: 22px;
+}
+
+.top_tag, .additional_tag, .Cross_Street_description {
+  text-transform: capitalize;
+}
+
+.description_paragraph {
+  margin-top: 8px;
+  margin-bottom: 1px;
+}
+
+.description_read_more {
+  margin-bottom: 17px;
+}
+
+.details_well {
+  background-color: #fefefe;
+  border-top: none;
+  border-right: none;
+  border left: none;
+  border-bottom: 1px solid #fcfcfc
+}
+
+.view_all_details {
+  background: #da3743;
+  border-color: #da3743;
+  border-width: 3px;
+  border-radius: 0;
+  color: #fff;
+  font-weight: bold;
+}
+
+.view_all_details:hover {
+  background-color: #fefefe;
+  color: #222;
+  border-color: #da3743;
+  font-weight: auto;
+}
+
+.view_private_dining_details,  {
+  background: #fefefe;
+  border-color: #222;
+  border-radius: 0;
+  color: #222;
+  font-weight: bold;
+}
+
+.view_private_dining_details:hover, {
+  background-color: #fefefe;
+  color: #222;
+  border-color: #da3743;
+  font-weight: auto;
+}
+
+.top_tag {
+  background: #fefefe;
+  color: #222;
+}
+
+.top_tag:hover {
+  background-color: #fefefe;
+  color: #222;
+  border-color: #da3743;
+}
