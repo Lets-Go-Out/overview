@@ -47,9 +47,14 @@ class MiniSummary extends React.Component {
 
   componentDidMount() {
     const { id } = this.props;
-    fetch(`http://localhost:3005/restaurants/${id}/reviewSummary`)
-      .then(data => data.json())
+    console.log('Mini Summary ID:', id);
+    fetch(`http://ec2-3-16-56-113.us-east-2.compute.amazonaws.com/restaurants/${id}/reviewSummary`)
+      .then(data => {
+        console.log(data);
+        return data.json();
+      })
       .then((data) => {
+        console.log('JSON\'d data:', data);
         const { overallAvg, numReviews } = data;
         console.log('Success! Data:', { overallAvg, numReviews });
         this.setState({ overallAvg, numReviews });

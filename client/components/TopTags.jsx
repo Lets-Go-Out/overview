@@ -7,14 +7,14 @@ const TopTags = (props) => {
   const topTagsJsx = [];
 
   topTagsJsx.push((
-    <div styleName="bs.col-md-3">
+    <div styleName="bs.col-md-3 bs.col-sm-4 bs.col-xs-4 bs.col-sm-offset-0">
       <a role="button" key={0} type="button" styleName="styles.top_tag bs.btn bs.btn-default">{` ${props.tags[0]}`}</a>
     </div>
   ));
 
   for (let i = 1; i < 3 && i < props.tags.length; i += 1) {
     topTagsJsx.push((
-      <div styleName="bs.col-md-3">
+      <div styleName="bs.col-md-3 bs.col-sm-4 bs.col-xs-4 bs.col-sm-offset-0">
         <a role="button" type="button" key={i} styleName="styles.top_tag bs.btn bs.btn-default">{`${props.tags[i]}`}</a>
       </div>
     ));
@@ -22,11 +22,11 @@ const TopTags = (props) => {
 
   return (
     <div styleName="bs.row styles.top_tags_row">
-      <div styleName="bs.col-md-10 bs.col-md-offset-1">
+      <div styleName="bs.col-sm-10 bs.col-sm-offset-1">
         <div styleName="styles.top_tag_heading">
-          <div styleName="bs.col-md-3 bs.col-lg-2">Top Tags:</div>
-          {topTagsJsx}
+          <div styleName="bs.col-md-2 bs.col-sm-12">Top Tags:</div>
         </div>
+        {topTagsJsx}
       </div>
     </div>
   );

@@ -62,7 +62,7 @@ class Overview extends React.Component {
         </div>
         <div styleName="bs.row">
           <Summary
-            restaurantId={this.state.currentRestaurant.restaurantId}
+            restaurantId={this.state.currentRestaurant.id}
             cuisine_types={this.state.currentRestaurant.cuisine_types}
             price_range={this.state.currentRestaurant.price_range}
           />

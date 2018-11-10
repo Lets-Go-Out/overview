@@ -44,15 +44,15 @@ class Summary extends React.Component {
     }
     return (
       <div styleName="bs.row">
-        <div styleName="bs.col-md-10 bs.col-md-offset-1">
-          <div styleName="bs.col-md-4 bs.col-sm-3">
+        <div styleName="bs.col-sm-10 bs.col-xs-offset-2 bs.col-sm-offset-2">
+          <div styleName="bs.col-md-4 bs.col-sm-5  bs.col-sm-offset-0">
             <MiniSummary id={this.props.restaurantId} />
           </div>
-          <div styleName="styles.price_range bs.col-md-3 bs.col-sm-3">
+          <div styleName="styles.price_range bs.col-md-3 bs.col-sm-4">
             {getGlyph('Price Range')}
             {priceRange}
           </div>
-          <div styleName="styles.cuisine_type bs.col-md-3 bs.col-sm-8">
+          <div styleName="styles.cuisine_type bs.col-sm-3 ">
             {getGlyph('Cuisine Type')}
             {` ${this.props.cuisine_types[0]} `}
           </div>

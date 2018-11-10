@@ -7,7 +7,7 @@ const Description = (props) => {
   const truncatedDescription = props.description.slice(0, 180);
   return (
     <div styleName="bs.row styles.restaurant_description">
-      <div styleName="bs.col-sm-10 bs.col-md-offset-1">
+      <div styleName="bs.col-xs-10 bs.col-xs-offset-1">
         <p styleName="styles.description_paragraph">
           {
             props.showFullDescriptionState
@@ -17,7 +17,7 @@ const Description = (props) => {
         </p>
       </div>
       <div
-        styleName="styles.description_read_more bs.col-sm-2 bs.col-sm-offset-2"
+        styleName="styles.description_read_more bs.col-xs-6 bs.col-xs-offset-2"
         onClick={props.showFullDescription}
         display={
           props.showFullDescriptionState
