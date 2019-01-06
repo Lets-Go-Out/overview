@@ -38,42 +38,40 @@ const Details = (props) => {
   };
 
   return (
-    <div styleName="bs.row">
-      <div stylename="bs.col-md-10 bs.col-md-offset-1">
-        <div
-          style={detailsWellStyle}
-          styleName="styles.details_well bs.well bs.well-lg"
-        >
-          <div styleName="bs.row">
-            <NonALTags restaurant={props.restaurant} />
-            <div styleName="styles.ALTags bs.col-md-6">
-              <div styleName="bs.row">
-                <div stylName="bs.thumbnail">
-                  <img src="stock_map.png" alt="Stock Map" />
-                  <div styleName="bs.caption">
-                    <h4>MAP GOES HERE</h4>
-                    <p>This feature is not yet included</p>
-                  </div>
+    <div stylename="bs.col-md-10 bs.col-md-offset-1">
+      <div
+        style={detailsWellStyle}
+        styleName="styles.details_well bs.well bs.well-lg"
+      >
+        <div styleName="bs.row">
+          <NonALTags restaurant={props.restaurant} />
+          <div styleName="styles.ALTags bs.col-md-6">
+            <div styleName="bs.row">
+              <div stylName="bs.thumbnail">
+                <img src="stock_map.png" alt="Stock Map" />
+                <div styleName="bs.caption">
+                  <h4>MAP GOES HERE</h4>
+                  <p>This feature is not yet included</p>
                 </div>
               </div>
-              <div styleName="bs.row">
-                <LocTags restaurant={props.restaurant} />
-                <div styleName="bs.media">
-                  <div styleName="bs.media-left">
-                    {getGlyph('Additional Tags')}
-                  </div>
-                  <div styleName="bs.media-body">
-                    <div styleName="styles.tag_name bs.media-heading">Additional Tags</div>
-                    <p>
-                      {tagsJsx}
-                    </p>
-                  </div>
+            </div>
+            <div styleName="bs.row">
+              <LocTags restaurant={props.restaurant} />
+              <div styleName="bs.media">
+                <div styleName="bs.media-left">
+                  {getGlyph('Additional Tags')}
+                </div>
+                <div styleName="bs.media-body">
+                  <div styleName="styles.tag_name bs.media-heading">Additional Tags</div>
+                  <p>
+                    {tagsJsx}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-          <PrivateDining privateDiningText={props.restaurant.private_dining} />
         </div>
+        <PrivateDining privateDiningText={props.restaurant.private_dining} />
       </div>
     </div>
   );

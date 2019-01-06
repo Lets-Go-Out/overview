@@ -71,7 +71,9 @@
   border-top: none;
   border-right: none;
   border left: none;
-  border-bottom: 1px solid #fcfcfc
+  border-bottom: 1px solid #fcfcfc;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .view_all_details {

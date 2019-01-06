@@ -44,7 +44,7 @@ class Summary extends React.Component {
     }
     return (
       <div styleName="bs.row">
-        <div styleName="bs.col-sm-10 bs.col-xs-offset-2 bs.col-sm-offset-2">
+        <div styleName="bs.col-sm-10 bs.col-xs-offset-2 bs.col-sm-offset-1">
           <div styleName="bs.col-md-4 bs.col-sm-5  bs.col-sm-offset-0">
             <MiniSummary id={this.props.restaurantId} />
           </div>

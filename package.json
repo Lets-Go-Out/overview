@@ -12,7 +12,7 @@
     "test:watch": "jest --watchAll --verbose",
     "test:coverage": "jest --verbose --coverage",
     "seed": "node ./database/seed.js",
-    "start": "node server/index.js",
+    "start": "nodemon server/index.js",
     "build": "webpack --watch"
   },
   "author": "",
@@ -58,7 +58,7 @@
     "jest-enzyme": "^7.0.0",
     "jquery": "^3.3.1",
     "mysql": "^2.16.0",
-    "nodemon": "^1.18.5",
+    "nodemon": "^1.18.9",
     "popper.js": "^1.14.4",
     "react": "^16.6.0",
     "react-bootstrap": "^0.32.4",

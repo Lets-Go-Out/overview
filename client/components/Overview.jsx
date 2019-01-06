@@ -1,11 +1,13 @@
 import React from 'react';
 import $ from 'jquery';
+import bs from 'bootstrap/dist/css/bootstrap.css';
+import styles from '../styles/overview_styles.css';
 import Summary from './Summary.jsx'; /* eslint-disable-line */
 import TopTags from './TopTags.jsx'; /* eslint-disable-line */
 import Description from './Description.jsx'; /* eslint-disable-line */
 import Details from './Details.jsx'; /* eslint-disable-line */
-import bs from 'bootstrap/dist/css/bootstrap.css';
-import styles from '../styles/overview_styles.css';
+
+import { hostName } from '../../config.js';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -27,7 +29,7 @@ class Overview extends React.Component {
 
   getRestaurantById(restaurantId) {
     const restaurantIdObj = { id: restaurantId };
-    $.get(`http://droptableoverviewmodule-env.p3mzbj3zib.us-west-1.elasticbeanstalk.com/api/restaurants/overview/${restaurantIdObj.id}`, (data) => {
+    $.get(`${hostName}/api/restaurants/overview/${restaurantIdObj.id}`, (data) => {
       const myObj = data;
       myObj.tags = data.tags.split(',');
       myObj.cuisine_types = data.cuisine_types.split(',');
@@ -54,9 +56,9 @@ class Overview extends React.Component {
     // ];
 
     return (
-      <div styleName="bs.container styles.overview_grid">
+      <div>
         <div styleName="bs.row">
-          <div styleName="bs.col-md-10 bs.col-md-offset-1">
+          <div styleName="bs.col-md-12">
             <div styleName="styles.overview_header bs.page-header">{this.state.currentRestaurant.name}</div>
           </div>
         </div>
@@ -73,11 +75,13 @@ class Overview extends React.Component {
           />
         </div>
         <div styleName="bs.row">
-          <Description
-            showFullDescriptionState={this.state.showFullDescription}
-            description={this.state.currentRestaurant.description}
-            showFullDescription={this.showFullDescription}
-          />
+          <div styleName="bs.col-md-10 bs.col-md-offset-1">
+            <Description
+              showFullDescriptionState={this.state.showFullDescription}
+              description={this.state.currentRestaurant.description}
+              showFullDescription={this.showFullDescription}
+            />
+          </div>
         </div>
         <div styleName="bs.row">
           <Details

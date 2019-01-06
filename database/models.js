@@ -2,10 +2,10 @@ const mysql = require('mysql');
 const dummyData = require('./dummyData.json');
 
 const dbConnection = mysql.createConnection({
-  database: process.env.RDS_DB_NAME,
+  database: 'drop_table',
   host: process.env.RDS_HOSTNAME,
-  user: process.env.RDS_USERNAME,
-  password: process.env.RDS_PASSWORD,
+  user: 'root',
+  password: 'ph@sePr1meM3tric$$$',
   port: process.env.RDS_PORT,
 });
 
@@ -27,7 +27,7 @@ module.exports.getRestaurantById = (id, callback) => {
   dbConnection.query('SELECT * FROM restaurants WHERE id=?', [id], (err, results, fields) => {
     //    invoke error-first callback stuff
     if (err) {
-      // console.error(err);
+      console.error(err);
       callback(err, null, null);
     } else {
       console.log('getRestaurantById succeeded!');
