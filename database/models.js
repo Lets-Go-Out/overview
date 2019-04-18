@@ -1,10 +1,10 @@
-const mysql = require('mysql');
-const dummyData = require('./dummyData.json');
+const mysql = require("mysql");
+const dummyData = require("./dummyData.json");
 
 const dbConnection = mysql.createConnection({
-  user: 'root',
-  password: 'Why you checkin\' out my password tho?',
-  database: 'drop_table',
+  user: "root",
+  password: "Why you checkin' out my password tho?",
+  database: "drop_table"
 });
 
 module.exports.connection = dbConnection;
@@ -22,16 +22,20 @@ module.exports.connection = dbConnection;
 
 module.exports.getRestaurantById = (id, callback) => {
   // query database for restaurant with a given ID,
-  dbConnection.query('SELECT * FROM restaurants WHERE id=?', [id], (err, results, fields) => {
-    //    invoke error-first callback stuff
-    if (err) {
-      // console.error(err);
-      callback(err, null, null);
-    } else {
-      console.log('getRestaurantById succeeded!');
-      callback(null, results, fields);
+  dbConnection.query(
+    "SELECT * FROM restaurants WHERE id=?",
+    [id],
+    (err, results, fields) => {
+      //    invoke error-first callback stuff
+      if (err) {
+        // console.error(err);
+        callback(err, null, null);
+      } else {
+        console.log("getRestaurantById succeeded!");
+        callback(null, results, fields);
+      }
     }
-  });
+  );
 };
 
 // module.exports.insertRestaurant = (newRestaurant, callback) => {
@@ -47,20 +51,24 @@ module.exports.getRestaurantById = (id, callback) => {
 // };
 
 module.exports.insertManyRestaurants = (restaurantsArray, callback) => {
-  let query = `INSERT INTO restaurants (${Object.keys(restaurantsArray[0])}) VALUES `;
+  let query = `INSERT INTO restaurants (${Object.keys(
+    restaurantsArray[0]
+  )}) VALUES `;
 
-  query += '(NULL';
+  query += "(NULL";
   for (let i = 1; i < Object.keys(restaurantsArray[0]).length; i += 1) {
     query += `,"${restaurantsArray[0][Object.keys(restaurantsArray[0])[i]]}"`;
   }
-  query += ')';
+  query += ")";
 
   for (let i = 1; i < restaurantsArray.length; i += 1) {
-    query += ', (NULL';
+    query += ", (NULL";
     for (let j = 1; j < Object.keys(restaurantsArray[i]).length; j += 1) {
-      query += `, "${restaurantsArray[i][Object.keys(restaurantsArray[i])[j]]}"`;
+      query += `, "${
+        restaurantsArray[i][Object.keys(restaurantsArray[i])[j]]
+      }"`;
     }
-    query += ')';
+    query += ")";
   }
 
   dbConnection.query(query, (error, results) => {
