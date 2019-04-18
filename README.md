@@ -16,7 +16,7 @@ fetch('/api/restaurants/overview',{
   .then(success => console.log(success))
   .catch(err => console.error(err))
 ```  
-### GET /api/restaurants/overview/\<id\>
+### GET /api/restaurants/overview/:id
 Get a single restaurant and all of its data by the id.
 
 Example: 
@@ -26,7 +26,7 @@ fetch('/api/restaurants/overview/42')
   .then(restaurant => cb(restaurant))
 ```
 
-### PATCH /api/restaurants/overview/\<id\>
+### PATCH /api/restaurants/overview/:id
 Updates an entry in the database.
 
 Example:
@@ -41,7 +41,7 @@ fetch('/api/restaurants/overview/42',{
   .then(res => res.json())
   .then(updatedRest => cb(updatedRest))
 ```
-### DELETE /api/restaurants/overview/\<id\>
+### DELETE /api/restaurants/overview/:id
 Deletes an entry from the database.
 
 Example:
