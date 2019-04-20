@@ -9,7 +9,7 @@ csv.write(
   "id#created_at#name#address_line_1#address_line_2#city#state#zip#longitude#latitude#neighborhood#website#description#hours#phone_number#price_range#review_average#review_count#dining_style#cuisine_type#private_dining#executive_chef#dress_code#catering#payment_options#parking_details#cross_street#promos#public_transit#private_part_fac#private_party_contact#tags\r\n"
 );
 const newRestaurant = i => {
-  let fakeRestaurant = uuidv1() + "#";
+  let fakeRestaurant = i + "#";
   fakeRestaurant += new Date(date - (30 * 24 * 60 * 60 * i) / dataSize) + "#";
   fakeRestaurant += faker.company.companyName(0) + "#";
 
@@ -18,7 +18,7 @@ const newRestaurant = i => {
   if (i % 3 === 0) {
     fakeRestaurant += faker.address.secondaryAddress() + "#";
   } else {
-    fakeRestaurant += "null#";
+    fakeRestaurant += "#";
   }
 
   fakeRestaurant += faker.address.city() + "#";
@@ -38,7 +38,7 @@ const newRestaurant = i => {
   fakeRestaurant += faker.internet.url() + "#";
 
   const fakeParagraphs = [];
-  const descriptionLength = faker.random.number(3);
+  const descriptionLength = faker.random.number(3) + 1;
   for (let j = 0; j < descriptionLength; j += 1) {
     fakeParagraphs.push(faker.lorem.paragraph());
   }
@@ -105,8 +105,10 @@ const newRestaurant = i => {
   fakeRestaurant += "\r\n";
 
   // fakeRestaurants += fakeRestaurant;
-  console.log(i);
   if (i % 10000 === 0) {
+    console.log(i);
+  }
+  if (i % 100000 === 0) {
     console.clear();
   }
   if (i === dataSize) {
