@@ -1,0 +1,127 @@
+keyspace: restaurants
+keyspace_definition: |
+  CREATE KEYSPACE restaurants WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '3'}  AND durable_writes = true;
+table: restaurantstest
+table_definition: |
+  CREATE TABLE restaurants.restaurantstest (
+    id int PRIMARY KEY,
+    address_line_1 text,
+    address_line_2 text,
+    catering text,
+    city text,
+    created_at text,
+    cross_street text,
+    cuisine_type text,
+    description text,
+    dining_style text,
+    dress_code text,
+    executive_chef text,
+    hours text,
+    latitude decimal,
+    longitude decimal,
+    name text,
+    neighborhood text,
+    parking_details text,
+    payment_options text,
+    phone_number text,
+    price_range text,
+    private_dining text,
+    private_part_fac text,
+    private_party_contact text,
+    promos text,
+    public_transit text,
+    review_average decimal,
+    review_count int,
+    state text,
+    tags text,
+    website text,
+    zip text
+  ) WITH bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy', 'max_threshold': '32', 'min_threshold': '4'}
+    AND compression = {'chunk_length_in_kb': '64', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND crc_check_chance = 1.0
+    AND dclocal_read_repair_chance = 0.1
+    AND default_time_to_live = 0
+    AND gc_grace_seconds = 864000
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair_chance = 0.0
+    AND speculative_retry = '99PERCENTILE';
+columnspec:
+  - name: id
+    size: uniform(0..100)
+  - name: address_line_1
+    size: uniform(20..50)
+  - name: address_line_2
+    size: uniform(0..20)
+  - name: catering
+    size: uniform(30..50)
+  - name: city
+    size: uniform(15..50)
+  - name: created_at
+    size: fixed(32)
+  - name: cross_street
+    size: uniform(20..50)
+  - name: cuisine_type
+    size: uniform(20..50)
+  - name: description
+    size: uniform(300..1100)
+  - name: dining_style
+    size: uniform(30..100)
+  - name: dress_code
+    size: uniform(20..50)
+  - name: executive_chef
+    size: uniform(30..50)
+  - name: hours
+    size: uniform(0..20)
+  - name: latitude
+    size: fixed(15)
+  - name: longitude
+    size: fixed(15)
+  - name: name
+    size: uniform(30..100)
+  - name: neighborhood
+    size: uniform(40..100)
+  - name: parking_details
+    size: uniform(30..100)
+  - name: payment_options
+    size: uniform(30..100)
+  - name: phone_number
+    size: fixed(20)
+  - name: price_range
+    size: fixed(10)
+  - name: private_dining
+    size: fixed(30)
+  - name: private_part_fac
+    size: fixed(30)
+  - name: private_party_contact
+    size: fixed(30)
+  - name: promos
+    size: fixed(30)
+  - name: public_transit
+    size: uniform(0..100)
+  - name: review_average
+    size: fixed(10)
+  - name: review_count
+    size: fixed(15)
+  - name: state
+    size: fixed(5)
+  - name: tags
+    size: uniform(20..100)
+  - name: website
+    size: uniform(10..50)
+  - name: zip
+    size: fixed(8)
+
+insert:
+  partitions: fixed(1)
+  select: fixed(10)/10
+  batchtype: LOGGED
+
+queries:
+  get-one:
+    cql: SELECT * FROM restaurantstest WHERE id = ?
+    fields: samerow
