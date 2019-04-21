@@ -125,3 +125,4 @@ queries:
   get-one:
     cql: SELECT * FROM restaurantstest WHERE id = ?
     fields: samerow
+#cassandra-stress user profile=./stressprofile.yaml "ops(insert=1, get-one=1)"  n=1000000 -graph file=test.html title=yamltest -rate threads=8
