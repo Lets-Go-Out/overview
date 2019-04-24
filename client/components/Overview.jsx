@@ -1,23 +1,21 @@
-import React from 'react';
-import $ from 'jquery';
-import {
-  Grid, Row, Col, PageHeader, Button,
-} from 'react-bootstrap';
-import Summary from './Summary.jsx'; /* eslint-disable-line */
-import TopTags from './TopTags.jsx'; /* eslint-disable-line */
-import Description from './Description.jsx'; /* eslint-disable-line */
-import Details from './Details.jsx'; /* eslint-disable-line */
-import styles from '../styles/overview_styles.css';
+import React from "react";
+import $ from "jquery";
+import { Grid, Row, Col, PageHeader, Button } from "react-bootstrap";
+import Summary from "./Summary.jsx"; /* eslint-disable-line */
+import TopTags from "./TopTags.jsx"; /* eslint-disable-line */
+import Description from "./Description.jsx"; /* eslint-disable-line */
+import Details from "./Details.jsx"; /* eslint-disable-line */
+import styles from "../styles/overview_styles.css";
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showMore: false,
-      currentRestaurantId: 100,
+      currentRestaurantId: Math.floor(Math.random() * 9995000),
       currentRestaurant: {},
       showFullDescription: false,
-      showFullDetails: false,
+      showFullDetails: false
     };
     this.showFullDescription = this.showFullDescription.bind(this);
     this.showFullDetails = this.showFullDetails.bind(this);
@@ -29,10 +27,11 @@ class Overview extends React.Component {
 
   getRestaurantById(restaurantId) {
     const restaurantIdObj = { id: restaurantId };
-    $.get(`http://localhost:3002/api/restaurants/overview/${restaurantIdObj.id}`, (data) => {
+    $.get(`/api/restaurants/overview/${restaurantIdObj.id}`, data => {
       const myObj = data;
-      myObj.tags = data.tags.split(',');
-      myObj.cuisine_types = data.cuisine_types.split(',');
+      console.log(data);
+      myObj.tags = data.tags.split(",");
+      myObj.cuisine_types = data.cuisine_type.split(",");
       this.setState({ currentRestaurant: myObj });
     });
   }
@@ -47,7 +46,7 @@ class Overview extends React.Component {
 
   render() {
     if (!this.state.currentRestaurant.id) {
-      return (<h1>Loading...</h1>);
+      return <h1>Loading...</h1>;
     }
 
     // const geoCords = [
@@ -70,9 +69,7 @@ class Overview extends React.Component {
           />
         </Row>
         <Row>
-          <TopTags
-            tags={this.state.currentRestaurant.tags}
-          />
+          <TopTags tags={this.state.currentRestaurant.tags} />
         </Row>
         <Row>
           <Description
@@ -95,11 +92,7 @@ class Overview extends React.Component {
               type="button"
               onClick={this.showFullDetails}
             >
-              {
-                this.state.showFullDetails
-                  ? 'Hide details'
-                  : 'View all details'
-              }
+              {this.state.showFullDetails ? "Hide details" : "View all details"}
             </Button>
           </Col>
         </Row>
