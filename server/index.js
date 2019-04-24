@@ -1,6 +1,6 @@
 require("newrelic");
 const express = require("express");
-const cors = require("cors");
+// const cors = require("cors");
 const Models = require("../database/cassandra.js");
 const path = require("path");
 // const React = require("react");
@@ -14,13 +14,13 @@ const app = express();
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  // const jsx = <Overview />;
-  const reactDom = renderToString(jsx);
+// app.get("/", (req, res) => {
+//   // const jsx = <Overview />;
+//   const reactDom = renderToString(jsx);
 
-  res.writeHead(200, { "Content-Type": "text/html" });
-  res.end;
-});
+//   res.writeHead(200, { "Content-Type": "text/html" });
+//   res.end;
+// });
 app.get("/api/restaurants/overview/:id", (req, res) => {
   console.log("request params: ", req.params);
   Models.getRestaurantById(req.params.id, (err, results) => {
