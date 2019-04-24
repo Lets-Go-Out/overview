@@ -4,7 +4,7 @@ const uuidv1 = require("uuid/v1");
 faker.seed(105);
 const dataSize = 10000000;
 let date = Date.now();
-let csv = fs.createWriteStream("./dummyDataCass.csv");
+let csv = fs.createWriteStream("./dummyDataCassTest.csv");
 csv.write(
   "id#created_at#name#address_line_1#address_line_2#city#state#zip#longitude#latitude#neighborhood#website#description#hours#phone_number#price_range#review_average#review_count#dining_style#cuisine_type#private_dining#executive_chef#dress_code#catering#payment_options#parking_details#cross_street#promos#public_transit#private_part_fac#private_party_contact#tags\r\n"
 );
