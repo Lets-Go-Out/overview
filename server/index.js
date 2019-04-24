@@ -42,7 +42,12 @@ app.get("/loaderio-7d462d45ea42d073f47c53d0b6dff463", (req, res) => {
     path.join(__dirname, "../loaderio-7d462d45ea42d073f47c53d0b6dff463.txt")
   );
 });
-
+app.use(err => {
+  if (err) {
+    console.log("here");
+    console.error(err);
+  }
+});
 app.listen(3002, () => console.log("listening on port 3002!"));
 
 function htmlTemplate(reactDom) {
