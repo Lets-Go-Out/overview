@@ -34,6 +34,9 @@ app.get("/api/restaurants/overview/:id", (req, res) => {
     }
   });
 });
+app.get("/loaderio-2226bf6a7755193224da43b5fae1afb6", (req, res) => {
+  res.sendFile("../loaderio-2226bf6a7755193224da43b5fae1afb6.txt");
+});
 
 app.listen(3002, () => console.log("listening on port 3002!"));
 
