@@ -35,9 +35,9 @@ app.get("/api/restaurants/overview/:id", (req, res) => {
     }
   });
 });
-app.get("/loaderio-2226bf6a7755193224da43b5fae1afb6", (req, res) => {
+app.get("/loaderio-7d462d45ea42d073f47c53d0b6dff463", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../loaderio-2226bf6a7755193224da43b5fae1afb6.txt")
+    path.join(__dirname, "../loaderio-7d462d45ea42d073f47c53d0b6dff463.txt")
   );
 });
 
