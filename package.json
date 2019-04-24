@@ -13,7 +13,7 @@
     "test:coverage": "jest --verbose --coverage",
     "seed": "node ./database/data_gen.js",
     "start": "nodemon server/index.js",
-    "build": "webpack"
+    "build": "webpack --mode production --config ./webpack.config.js"
   },
   "author": "",
   "jest": {
