@@ -21,6 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 //   res.writeHead(200, { "Content-Type": "text/html" });
 //   res.end;
 // });
+app.get("/favicon.ico", (req, res) => {
+  res.sendStatus(200);
+});
 app.get("/api/restaurants/overview/:id", (req, res) => {
   console.log("request params: ", req.params);
   Models.getRestaurantById(req.params.id, (err, results) => {
@@ -30,7 +33,6 @@ app.get("/api/restaurants/overview/:id", (req, res) => {
       res.send("Check the server console!");
     } else {
       console.log("Server success!: ");
-      console.log(results.rows[0]);
       res.json(results.rows[0]);
     }
   });
