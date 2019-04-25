@@ -20,7 +20,8 @@ const cacheCheck = (req, res, next) => {
   client.get(req.params.id, (err, data) => {
     if (err) console.error(err);
     else if (data !== null) {
-      res.json(data);
+      res.json(JSON.parse(data));
+      console.log("used cache");
     } else {
       next();
     }
@@ -32,15 +33,13 @@ app.get("/favicon.ico", (req, res) => {
 });
 app.get("/api/restaurants/overview/:id", cacheCheck, (req, res) => {
   Models.getRestaurantById(req.params.id, (err, results) => {
-    console.log(req.params);
     if (err) {
       res.status(404);
       console.error("Server says: something went wrong with the get", err);
       res.send("Check the server console!");
     } else {
-      // console.log("Server success!: ");
-      console.log(results);
       res.json(results.rows[0]);
+      console.log("set cache");
       client.set(req.params.id, JSON.stringify(results.rows[0]));
     }
   });
