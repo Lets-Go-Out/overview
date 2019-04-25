@@ -1,11 +1,11 @@
 // "create table restaurants (id int, created_at text, name text, address_line_1 text, address_line_2 text, city text, state text, zip text, longitude decimal, latitude decimal, neighborhood text, website text, description text, hours text, phone_number text, price_range text, review_average decimal, review_count int, dining_style text, cuisine_type text, private_dining text,executive_chef text, dress_code text, catering text, payment_options text, parking_details text, cross_street text, promos text, public_transit text, private_part_fac text, private_party_contact text, tags text, PRIMARY KEY(id))";
-// node1 => 172.31.20.159   /   54.183.175.54
-// node2 => 172.31.30.180   /   54.193.93.116
-// node3 => 172.31.27.238   /   54.215.210.50
+// node1 => 172.31.20.159   /   52.8.62.171
+// node2 => 172.31.30.180   /   54.67.82.134
+// node3 => 172.31.27.238   /   13.56.149.209
 
 const cassandra = require("cassandra-driver");
 const client = new cassandra.Client({
-  contactPoints: ["54.183.175.54", "54.193.93.116", "54.215.210.50"],
+  contactPoints: ["52.8.62.171", "54.67.82.134", "13.56.149.209"],
   keyspace: "restaurants",
   socketOptions: {
     connectTimeout: 5000
