@@ -13,7 +13,7 @@
     "test:coverage": "jest --verbose --coverage",
     "seed": "node ./database/data_gen.js",
     "start": "nodemon server/index.js",
-    "build": "webpack"
+    "build": "webpack --mode production --config ./webpack.config.js"
   },
   "author": "",
   "jest": {
@@ -73,6 +73,8 @@
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.0",
     "react-redux": "^5.1.0",
+    "redis": "^2.8.0",
+    "redis-server": "^1.2.2",
     "redux": "^4.0.1",
     "regenerator-runtime": "^0.12.1",
     "sequelize": "^5.6.1",
