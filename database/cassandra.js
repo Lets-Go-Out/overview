@@ -5,7 +5,14 @@
 
 const cassandra = require("cassandra-driver");
 const client = new cassandra.Client({
-  contactPoints: ["52.8.62.171", "54.67.82.134", "13.56.149.209"],
+  contactPoints: [
+    "52.8.62.171",
+    "54.67.82.134",
+    "13.56.149.209",
+    "13.57.10.16",
+    "18.144.19.190",
+    "54.219.174.88"
+  ],
   keyspace: "restaurants",
   socketOptions: {
     connectTimeout: 5000
