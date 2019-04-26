@@ -31,6 +31,7 @@ const cacheCheck = (req, res, next) => {
 app.get("/favicon.ico", (req, res) => {
   res.sendStatus(200);
 });
+
 app.get("/api/restaurants/overview/:id", cacheCheck, (req, res) => {
   Models.getRestaurantById(req.params.id, (err, results) => {
     if (err) {
@@ -44,27 +45,27 @@ app.get("/api/restaurants/overview/:id", cacheCheck, (req, res) => {
     }
   });
 });
-app.get("/loaderio-7d462d45ea42d073f47c53d0b6dff463", (req, res) => {
+app.get("/loaderio-9a7dbfdd5b44d524f544d7b848305b60", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../loaderio-7d462d45ea42d073f47c53d0b6dff463.txt")
+    path.join(__dirname, "../loaderio-9a7dbfdd5b44d524f544d7b848305b60.txt")
   );
 });
 
 app.listen(3002, () => console.log("listening on port 3002!"));
 
-function htmlTemplate(reactDom) {
-  return `
-      <!DOCTYPE html>
-      <html>
-      <head>
-          <meta charset="utf-8">
-          <title>React SSR</title>
-      </head>
-      
-      <body>
-          <div id="app">${reactDom}</div>
-          <script src="./app.bundle.js"></script>
-      </body>
-      </html>
-  `;
-}
+// function htmlTemplate(reactDom) {
+//   return `
+//       <!DOCTYPE html>
+//       <html>
+//       <head>
+//           <meta charset="utf-8">
+//           <title>React SSR</title>
+//       </head>
+
+//       <body>
+//           <div id="app">${reactDom}</div>
+//           <script src="./app.bundle.js"></script>
+//       </body>
+//       </html>
+//   `;
+// }
