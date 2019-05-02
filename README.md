@@ -30,6 +30,7 @@ fetch('/api/restaurants/overview/42')
 Updates an entry in the database.
 
 _Updates based on one key-value pair in an object_
+
 Example:
 ```
 fetch('/api/restaurants/overview/42',{
