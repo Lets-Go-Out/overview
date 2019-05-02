@@ -1,5 +1,5 @@
 # API ROUTES
-### POST /api/restaurants/overview
+### POST /api/restaurants/overview/
 Create a new restaurant entry in the database.
   
   _Restaurant schema provided below_
